@@ -5,20 +5,24 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { petActions } from '../../redux/petSlice/slice';
 import { Divider, Layout, Button } from '@ui-kitten/components';
 
+import {
+  getVersion,
+  getSystemName,
+  useBatteryLevel,
+} from 'react-native-device-info';
+
 export function Example() {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const petState = useAppSelector((state: RootState) => state.petState);
 
   return (
-    <Layout style={{ flex: 1, padding: 16 }} level="3">
+    <Layout style={{ flex: 1, padding: 16 }} level="2">
       <Text>Tela Exemplo</Text>
-
       <Text>Exemplo Redux</Text>
       <Text>{`Nome: ${petState.user.name}`}</Text>
       <Text>{`Email: ${petState.user.email}`}</Text>
       <Text>{`Telefone: ${petState.user.phone}`}</Text>
-
       <Button
         onPress={() =>
           dispatch(
@@ -31,18 +35,21 @@ export function Example() {
       >
         Usar Redux
       </Button>
-
       <Divider style={{ marginVertical: 16 }} />
-
       <Button size="tiny">TINY</Button>
       <Divider style={{ marginVertical: 16 }} />
       <Button size="small">SMALL</Button>
       <Divider style={{ marginVertical: 16 }} />
       <Button size="medium">Medium</Button>
       <Divider style={{ marginVertical: 16 }} />
-
       <Text>Exemplo Navegacao</Text>
       <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
+
+      <Text>Exemplo Device Info</Text>
+      <Divider style={{ marginVertical: 16 }} />
+      <Text>Vesao: {getVersion()}</Text>
+      <Text>Nome Sistema: {getSystemName()}</Text>
+      <Text>Bateria: {useBatteryLevel()}</Text>
     </Layout>
   );
 }
