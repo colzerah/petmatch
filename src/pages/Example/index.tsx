@@ -1,9 +1,9 @@
-import { Button } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { petActions } from '../../redux/petSlice/slice';
+import { Divider, Layout, Button } from '@ui-kitten/components';
 
 export function Example() {
   const navigation = useNavigation<any>();
@@ -11,7 +11,7 @@ export function Example() {
   const petState = useAppSelector((state: RootState) => state.petState);
 
   return (
-    <View>
+    <Layout style={{ flex: 1, padding: 16 }} level="3">
       <Text>Tela Exemplo</Text>
 
       <Text>Exemplo Redux</Text>
@@ -23,7 +23,7 @@ export function Example() {
         onPress={() =>
           dispatch(
             petActions.setUpdateUser({
-              email: 'dyego@gmail.com',
+              email: 'dyegos@gmail.com',
               phone: 61981122323,
             }),
           )
@@ -32,8 +32,17 @@ export function Example() {
         Usar Redux
       </Button>
 
+      <Divider style={{ marginVertical: 16 }} />
+
+      <Button size="tiny">TINY</Button>
+      <Divider style={{ marginVertical: 16 }} />
+      <Button size="small">SMALL</Button>
+      <Divider style={{ marginVertical: 16 }} />
+      <Button size="medium">Medium</Button>
+      <Divider style={{ marginVertical: 16 }} />
+
       <Text>Exemplo Navegacao</Text>
       <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
-    </View>
+    </Layout>
   );
 }

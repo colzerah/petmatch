@@ -1,37 +1,33 @@
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React from 'react';
+import { StatusBar, useColorScheme, LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AppRoutes } from './routes/app.routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
+import { AppRoutes } from './routes/app.routes';
+
+LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate`']);
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const theme = isDarkMode ? eva.dark : eva.light;
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <ApplicationProvider {...eva} theme={theme}>
+        <Provider store={store}>
+          <NavigationContainer>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            />
+            <AppRoutes />
+          </NavigationContainer>
+        </Provider>
+      </ApplicationProvider>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  return (
-    <View style={styles.container}>
-      <Provider store={store} data-testid="redux-provider">
-        <NavigationContainer>
-          <AppRoutes />
-        </NavigationContainer>
-      </Provider>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
