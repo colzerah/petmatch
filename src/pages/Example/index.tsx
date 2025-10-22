@@ -5,18 +5,20 @@ import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { petActions } from '../../redux/petSlice/slice';
 
-export function Home() {
+export function Example() {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const petState = useAppSelector((state: RootState) => state.petState);
 
   return (
     <View>
-      <Text>Home Page</Text>
+      <Text>Tela Exemplo</Text>
+
+      <Text>Exemplo Redux</Text>
       <Text>{`Nome: ${petState.user.name}`}</Text>
       <Text>{`Email: ${petState.user.email}`}</Text>
       <Text>{`Telefone: ${petState.user.phone}`}</Text>
-      <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
+
       <Button
         onPress={() =>
           dispatch(
@@ -29,6 +31,9 @@ export function Home() {
       >
         Usar Redux
       </Button>
+
+      <Text>Exemplo Navegacao</Text>
+      <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
     </View>
   );
 }

@@ -2,6 +2,8 @@ import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppRoutes } from './routes/app.routes';
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -17,9 +19,11 @@ function App() {
 function AppContent() {
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <AppRoutes />
-      </NavigationContainer>
+      <Provider store={store} data-testid="redux-provider">
+        <NavigationContainer>
+          <AppRoutes />
+        </NavigationContainer>
+      </Provider>
     </View>
   );
 }
