@@ -10,11 +10,41 @@ import {
   getSystemName,
   useBatteryLevel,
 } from 'react-native-device-info';
+// import { useEffect } from 'react';
+// import axios from 'axios';
 
 export function Example() {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const petState = useAppSelector((state: RootState) => state.petState);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await requestTodos();
+  //     console.log('RESPONSE', response);
+  //   })();
+  // }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get<any>(
+  //         'https://www.boredapi.com/api/activity',
+  //         {
+  //           headers: {
+  //             'Content-type': 'Application/json',
+  //             Accept: 'Application/json',
+  //           },
+  //         },
+  //       );
+  //       console.log(response.data);
+  //     } catch (err: any) {
+  //       console.log('Erro Axios:', err);
+  //       console.log(err.message || 'Erro desconhecido');
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   return (
     <Layout style={{ flex: 1, padding: 16 }} level="2">
