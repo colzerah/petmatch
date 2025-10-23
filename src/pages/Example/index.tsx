@@ -74,6 +74,10 @@ export function Example() {
         <Text>Exemplo DotEnv</Text>
         <Text>ENV URL: {API_URL}</Text>
         <Text>ENV NAME: {APP_NAME}</Text>
+
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo Map</Text>
+        <Button onPress={() => navigation.navigate('Map')}>Navegar</Button>
       </ScrollView>
     </Layout>
   );
