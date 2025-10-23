@@ -1,21 +1,20 @@
 import api from '../../services/api';
 
-export interface ITodosResponse {
-  userId: number;
-  id: number;
+export interface ISlide {
   title: string;
-  completed: boolean;
+  type: string;
+}
+export interface IJsonResponse {
+  slideshow: {
+    author: string;
+    date: string;
+    title: string;
+    slides: ISlide[];
+  };
 }
 
-export const requestTodos = async (): Promise<ITodosResponse | undefined> => {
-  console.log('TESTE1');
-  try {
-    const response = await api.get(`https://www.boredapi.com/api/activity`);
-    console.log('TESTE', response);
+export const requestJson = async (): Promise<IJsonResponse | undefined> => {
+  const response = await api.get(`/json`);
 
-    return response.data;
-  } catch (err) {
-    console.log('ERROR', err);
-    return undefined;
-  }
+  return response.data;
 };

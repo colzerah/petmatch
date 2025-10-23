@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { petActions } from '../../redux/petSlice/slice';
@@ -10,76 +10,65 @@ import {
   getSystemName,
   useBatteryLevel,
 } from 'react-native-device-info';
-// import { useEffect } from 'react';
-// import axios from 'axios';
+import { useState } from 'react';
+
+import {
+  IJsonResponse,
+  requestJson,
+} from '../../services/requests/ModalRequest';
 
 export function Example() {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const petState = useAppSelector((state: RootState) => state.petState);
+  const [data, setData] = useState<IJsonResponse | undefined>();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await requestTodos();
-  //     console.log('RESPONSE', response);
-  //   })();
-  // }, []);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get<any>(
-  //         'https://www.boredapi.com/api/activity',
-  //         {
-  //           headers: {
-  //             'Content-type': 'Application/json',
-  //             Accept: 'Application/json',
-  //           },
-  //         },
-  //       );
-  //       console.log(response.data);
-  //     } catch (err: any) {
-  //       console.log('Erro Axios:', err);
-  //       console.log(err.message || 'Erro desconhecido');
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const handleRequest = async () => {
+    const response = await requestJson();
+    setData(response);
+  };
 
   return (
     <Layout style={{ flex: 1, padding: 16 }} level="2">
-      <Text>Tela Exemplo</Text>
-      <Text>Exemplo Redux</Text>
-      <Text>{`Nome: ${petState.user.name}`}</Text>
-      <Text>{`Email: ${petState.user.email}`}</Text>
-      <Text>{`Telefone: ${petState.user.phone}`}</Text>
-      <Button
-        onPress={() =>
-          dispatch(
-            petActions.setUpdateUser({
-              email: 'dyegos@gmail.com',
-              phone: 61981122323,
-            }),
-          )
-        }
-      >
-        Usar Redux
-      </Button>
-      <Divider style={{ marginVertical: 16 }} />
-      <Button size="tiny">TINY</Button>
-      <Divider style={{ marginVertical: 16 }} />
-      <Button size="small">SMALL</Button>
-      <Divider style={{ marginVertical: 16 }} />
-      <Button size="medium">Medium</Button>
-      <Divider style={{ marginVertical: 16 }} />
-      <Text>Exemplo Navegacao</Text>
-      <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
+      <ScrollView>
+        <Text>Tela Exemplo</Text>
+        <Text>Exemplo Redux</Text>
+        <Text>{`Nome: ${petState.user.name}`}</Text>
+        <Text>{`Email: ${petState.user.email}`}</Text>
+        <Text>{`Telefone: ${petState.user.phone}`}</Text>
+        <Button
+          onPress={() =>
+            dispatch(
+              petActions.setUpdateUser({
+                email: 'dyegos@gmail.com',
+                phone: 61981122323,
+              }),
+            )
+          }
+        >
+          Usar Redux
+        </Button>
+        <Divider style={{ marginVertical: 16 }} />
+        <Button size="tiny">TINY</Button>
+        <Divider style={{ marginVertical: 16 }} />
+        <Button size="small">SMALL</Button>
+        <Divider style={{ marginVertical: 16 }} />
+        <Button size="medium">Medium</Button>
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo Navegacao</Text>
+        <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
 
-      <Text>Exemplo Device Info</Text>
-      <Divider style={{ marginVertical: 16 }} />
-      <Text>Vesao: {getVersion()}</Text>
-      <Text>Nome Sistema: {getSystemName()}</Text>
-      <Text>Bateria: {useBatteryLevel()}</Text>
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo Device Info</Text>
+        <Text>Vesao: {getVersion()}</Text>
+        <Text>Nome Sistema: {getSystemName()}</Text>
+        <Text>Bateria: {useBatteryLevel()}</Text>
+
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo Request</Text>
+        <Button onPress={handleRequest}>Navegar</Button>
+        <Text>{data?.slideshow.author}</Text>
+      </ScrollView>
     </Layout>
   );
 }
