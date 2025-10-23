@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
+import { API_URL } from '@env';
 
 const api = axios.create({
-  baseURL: 'https://httpbin.org',
+  baseURL: API_URL,
 });
 
 // Parametros padrões
