@@ -4,6 +4,7 @@ import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { petActions } from '../../redux/petSlice/slice';
 import { Divider, Layout, Button } from '@ui-kitten/components';
+import { API_URL, APP_NAME } from '@env';
 
 import {
   getVersion,
@@ -68,6 +69,11 @@ export function Example() {
         <Text>Exemplo Request</Text>
         <Button onPress={handleRequest}>Navegar</Button>
         <Text>{data?.slideshow.author}</Text>
+
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo DotEnv</Text>
+        <Text>ENV URL: {API_URL}</Text>
+        <Text>ENV NAME: {APP_NAME}</Text>
       </ScrollView>
     </Layout>
   );
