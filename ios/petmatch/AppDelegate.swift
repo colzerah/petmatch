@@ -1,4 +1,6 @@
 import UIKit
+import GoogleMaps
+import GooglePlaces
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
@@ -14,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
+
+    GMSServices.provideAPIKey("AIzaSyDzPgdiQDHEGO9EM2fo-yJwaBpesHl8ssk")
+    GMSPlacesClient.provideAPIKey("AIzaSyDzPgdiQDHEGO9EM2fo-yJwaBpesHl8ssk")
+    
+
     let delegate = ReactNativeDelegate()
     let factory = RCTReactNativeFactory(delegate: delegate)
     delegate.dependencyProvider = RCTAppDependencyProvider()
