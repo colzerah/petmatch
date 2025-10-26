@@ -15,10 +15,9 @@ if linkage != nil
 end
 
 target 'petmatch' do
-
- rn_maps_path = '../node_modules/react-native-maps'
- pod 'react-native-maps/Google', :path => rn_maps_path
- pod 'GooglePlaces', :modular_headers => true
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-maps/Google', :path => rn_maps_path
+  pod 'GooglePlaces', :modular_headers => true
 
   config = use_native_modules!
 

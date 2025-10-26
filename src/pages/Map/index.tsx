@@ -1,20 +1,18 @@
 import { StyleSheet } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Layout } from '@ui-kitten/components';
-import MapViewDirections, {
-  MapViewDirectionsOrigin,
-} from 'react-native-maps-directions';
+import MapViewDirections from 'react-native-maps-directions';
 import Geolocation, {
   GeolocationConfiguration,
 } from '@react-native-community/geolocation';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 export function Map() {
   const [position, setPosition] = useState<{
     latitude: number;
     longitude: number;
-  } | null>(null);
+  }>({ latitude: 0, longitude: 0 });
 
   useEffect(() => {
     console.log('position', position);
@@ -25,7 +23,11 @@ export function Map() {
     getCurrentLocation();
   }, []);
 
-  const origin = position as MapViewDirectionsOrigin;
+  const origin = { latitude: -15.8327, longitude: -48.110249 };
+  // position.latitude === 0
+  //   ? { latitude: -15.832701, longitude: -48.110249 }
+  //   : position;
+
   const destination = { latitude: -15.835466, longitude: -48.108409 };
   const apiKey = 'AIzaSyDzPgdiQDHEGO9EM2fo-yJwaBpesHl8ssk';
 
@@ -59,20 +61,20 @@ export function Map() {
     );
   }
 
-  useEffect(() => {
-    (async () => {
-      await axios
-        .get(
-          `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`,
-        )
-        .then(response => {
-          console.log('AXIOS RES', response.data); // equivalente ao r.json() do fetch
-        })
-        .catch(error => {
-          console.error('AXIOS ERROR', error);
-        });
-    })();
-  }, [destination, origin]);
+  // useEffect(() => {
+  //   (async () => {
+  //     await axios
+  //       .get(
+  //         `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`,
+  //       )
+  //       .then(response => {
+  //         console.log('AXIOS RES', response.data); // equivalente ao r.json() do fetch
+  //       })
+  //       .catch(error => {
+  //         console.error('AXIOS ERROR', error);
+  //       });
+  //   })();
+  // }, [destination, origin]);
 
   if (!position) {
     return null;
@@ -97,15 +99,18 @@ export function Map() {
         followsUserLocation={true} // faz o mapa seguir o usuário
         showsMyLocationButton={true} // botão padrão no Android
       >
+        <Marker coordinate={origin} title="Origem" />
+        <Marker coordinate={destination} title="Destino" />
         <MapViewDirections
           onReady={result => console.log('Distance: ', result.distance)}
           origin={origin}
           destination={destination}
           apikey={apiKey}
-          strokeWidth={10}
+          strokeWidth={5}
           mode="DRIVING"
+          strokeColor="blue"
           // strokeColor="brown"
-          strokeColors={['brown', 'green', 'red', 'blue']}
+          // strokeColors={['brown', 'green', 'red', 'blue']}
         />
       </MapView>
     </Layout>
