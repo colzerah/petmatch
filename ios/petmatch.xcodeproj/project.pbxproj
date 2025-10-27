@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EC11BA11884254D51A77FCB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8F379074E5296D626B408555 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		FE77859054E4FEB69BB1966D /* libPods-petmatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A881DA34C056DC5182A66F /* libPods-petmatch.a */; };
+		8F0DABA2542A9526A26EAC9F /* libPods-petmatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B316EB21A02376F6ED6F5FC8 /* libPods-petmatch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		123AC2130BDDFC03566E90A3 /* Pods-petmatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petmatch.release.xcconfig"; path = "Target Support Files/Pods-petmatch/Pods-petmatch.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* petmatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = petmatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = petmatch/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = petmatch/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = petmatch/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		64A881DA34C056DC5182A66F /* libPods-petmatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-petmatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = petmatch/AppDelegate.swift; sourceTree = "<group>"; };
+		7970E0183055743CC63E990C /* Pods-petmatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petmatch.debug.xcconfig"; path = "Target Support Files/Pods-petmatch/Pods-petmatch.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = petmatch/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B316EB21A02376F6ED6F5FC8 /* libPods-petmatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-petmatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F9E4FD4296E4BCDFB3769394 /* Pods-petmatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petmatch.debug.xcconfig"; path = "Target Support Files/Pods-petmatch/Pods-petmatch.debug.xcconfig"; sourceTree = "<group>"; };
-		FF0CE911AEBE331EB24FB7ED /* Pods-petmatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-petmatch.release.xcconfig"; path = "Target Support Files/Pods-petmatch/Pods-petmatch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE77859054E4FEB69BB1966D /* libPods-petmatch.a in Frameworks */,
+				8F0DABA2542A9526A26EAC9F /* libPods-petmatch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				64A881DA34C056DC5182A66F /* libPods-petmatch.a */,
+				B316EB21A02376F6ED6F5FC8 /* libPods-petmatch.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,8 +92,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F9E4FD4296E4BCDFB3769394 /* Pods-petmatch.debug.xcconfig */,
-				FF0CE911AEBE331EB24FB7ED /* Pods-petmatch.release.xcconfig */,
+				7970E0183055743CC63E990C /* Pods-petmatch.debug.xcconfig */,
+				123AC2130BDDFC03566E90A3 /* Pods-petmatch.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -105,13 +105,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "petmatch" */;
 			buildPhases = (
-				E9785C4E64DB1F6B62876EC0 /* [CP] Check Pods Manifest.lock */,
+				AAF6FF8A18D31DB502D2FF99 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				3D88E7B82BFD8446B88EB56D /* [CP] Embed Pods Frameworks */,
-				2D6C38AB4F140B7B35DB5DDD /* [CP] Copy Pods Resources */,
+				F9B1D93FAF27ED51F93868C7 /* [CP] Embed Pods Frameworks */,
+				2B3B37A5C1242210098CF48A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,7 +160,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				8F379074E5296D626B408555 /* PrivacyInfo.xcprivacy in Resources */,
+				0EC11BA11884254D51A77FCB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +183,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		2D6C38AB4F140B7B35DB5DDD /* [CP] Copy Pods Resources */ = {
+		2B3B37A5C1242210098CF48A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,24 +200,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3D88E7B82BFD8446B88EB56D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E9785C4E64DB1F6B62876EC0 /* [CP] Check Pods Manifest.lock */ = {
+		AAF6FF8A18D31DB502D2FF99 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,6 +222,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F9B1D93FAF27ED51F93868C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-petmatch/Pods-petmatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -255,11 +255,12 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9E4FD4296E4BCDFB3769394 /* Pods-petmatch.debug.xcconfig */;
+			baseConfigurationReference = 7970E0183055743CC63E990C /* Pods-petmatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M2H38QBLK2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = petmatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -274,6 +275,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.br.petmatch;
 				PRODUCT_NAME = petmatch;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -283,11 +285,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF0CE911AEBE331EB24FB7ED /* Pods-petmatch.release.xcconfig */;
+			baseConfigurationReference = 123AC2130BDDFC03566E90A3 /* Pods-petmatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M2H38QBLK2;
 				INFOPLIST_FILE = petmatch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -301,6 +304,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.br.petmatch;
 				PRODUCT_NAME = petmatch;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
