@@ -7,8 +7,11 @@ import { petActions } from '../../redux/petSlice/slice';
 
 export function Home() {
   const navigation = useNavigation<any>();
+
   const dispatch = useAppDispatch();
   const petState = useAppSelector((state: RootState) => state.petState);
+
+  navigation.changeTheme('light');
 
   return (
     <View>

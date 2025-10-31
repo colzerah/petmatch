@@ -17,6 +17,9 @@ import {
   IJsonResponse,
   requestJson,
 } from '../../services/requests/ModalRequest';
+import Geolocation, {
+  GeolocationConfiguration,
+} from '@react-native-community/geolocation';
 
 export function Example() {
   const navigation = useNavigation<any>();
@@ -25,9 +28,55 @@ export function Example() {
   const [data, setData] = useState<IJsonResponse | undefined>();
 
   const handleRequest = async () => {
-    const response = await requestJson();
-    setData(response);
+    try {
+      const response = await requestJson();
+      setData(response);
+    } catch (err) {
+      console.log('Request erro', err);
+      setData({
+        slideshow: {
+          author: '',
+          date: '',
+          title: 'falsy',
+          slides: [],
+        },
+      });
+    }
   };
+
+  const config = {
+    skipPermissionRequests: false,
+    authorizationLevel: 'always',
+    enableBackgroundLocationUpdates: true,
+    locationProvider: 'auto',
+  } as GeolocationConfiguration;
+
+  Geolocation.setRNConfiguration(config);
+
+  function getCurrentLocation() {
+    Geolocation.requestAuthorization();
+
+    Geolocation.getCurrentPosition(
+      async success => {
+        console.log('📍 Localização atual:', success);
+        navigation.navigate('Map');
+      },
+      // pos => {
+      //   const { latitude, longitude } = pos.coords;
+      //   setPosition({ latitude, longitude });
+      //   console.log('📍 Localização atual:', latitude, longitude);
+      // },
+      error => {
+        console.log('❌ Erro ao obter localização:', error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+        useSignificantChanges: false,
+      },
+    );
+  }
 
   return (
     <Layout style={{ flex: 1, padding: 16 }} level="2">
@@ -77,7 +126,14 @@ export function Example() {
 
         <Divider style={{ marginVertical: 16 }} />
         <Text>Exemplo Map</Text>
-        <Button onPress={() => navigation.navigate('Map')}>Navegar</Button>
+        <Button
+          onPress={() => {
+            getCurrentLocation();
+            // navigation.navigate('Map');
+          }}
+        >
+          Navegar
+        </Button>
       </ScrollView>
     </Layout>
   );

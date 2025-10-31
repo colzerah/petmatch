@@ -41,17 +41,19 @@
 		<dict>
 			<key>maps.googleapis.com</key>
 			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
 				<key>NSIncludesSubdomains</key>
 				<true/>
-			</dict>
-			<key>maps.gstatic.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
+				<key>NSTemporaryExceptionMinim umTLSVersion</key>
+				<string>TLSv1.2</string>
+				<key>NSRequiresHTTP3</key>
+      	<false/>
+				<key>localhost</key>
+					<dict>
+						<key>NSExceptionAllowsInsecureHTTPLoads</key>
+						<true/>
+					</dict>
 			</dict>
 		</dict>
 	</dict>

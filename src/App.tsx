@@ -8,7 +8,11 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 import { AppRoutes } from './routes/app.routes';
 
-LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate`']);
+LogBox.ignoreLogs([
+  'Sending `onAnimatedValueUpdate`',
+  'Failed to open debugger',
+  'HeadersTimeoutError',
+]);
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
