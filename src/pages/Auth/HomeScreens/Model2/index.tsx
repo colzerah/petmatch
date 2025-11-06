@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { Button } from '../ui/Button';
+import { Button } from '../../../../ui/Button';
 
 export function Model2() {
   return (
