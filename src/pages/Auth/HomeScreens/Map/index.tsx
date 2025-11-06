@@ -255,7 +255,7 @@ export function Map() {
       >
         <Marker.Animated coordinate={coordinate}>
           <Image
-            source={require('../../assets/car_arrow.png')} // ícone de seta do carro
+            source={require('../../../../assets/car_arrow.png')} // ícone de seta do carro
             style={{
               width: 40,
               height: 40,

@@ -6,6 +6,10 @@ rm -rf node_modules/.cache
 rm -rf android/.gradle
 rm -rf android/app/build
 
+
+echo "👀 Limpando Watchman..."
+watchman watch-del-all || true
+
 echo "🗑️ Limpando dependências Node..."
 rm -rf node_modules
 rm -f package-lock.json yarn.lock

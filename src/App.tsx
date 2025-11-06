@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
-import { AppRoutes } from './routes/app.routes';
+import Routes from './routes';
 
 LogBox.ignoreLogs([
   'Sending `onAnimatedValueUpdate`',
@@ -15,7 +15,7 @@ LogBox.ignoreLogs([
 ]);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
   const theme = isDarkMode ? eva.dark : eva.light;
 
   return (
@@ -24,9 +24,9 @@ function App() {
         <Provider store={store}>
           <NavigationContainer>
             <StatusBar
-              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
             />
-            <AppRoutes />
+            <Routes />
           </NavigationContainer>
         </Provider>
       </ApplicationProvider>
