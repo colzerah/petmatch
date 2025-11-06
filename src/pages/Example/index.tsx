@@ -107,6 +107,8 @@ export function Example() {
         <Divider style={{ marginVertical: 16 }} />
         <Text>Exemplo Navegacao</Text>
         <Button onPress={() => navigation.navigate('Model')}>Navegar</Button>
+        <Text>Exemplo Model 2</Text>
+        <Button onPress={() => navigation.navigate('Model2')}>Navegar</Button>
 
         <Divider style={{ marginVertical: 16 }} />
         <Text>Exemplo Device Info</Text>
