@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { Input } from '../../ui/Input';
+import { Input } from '@ui/Input';
 
 export function Model() {
   return (
