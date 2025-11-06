@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScrollView, Text } from 'react-native';
 import { RootState } from '../../redux/store';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { useTheme } from '../../hooks/useTheme';
 import { petActions } from '../../redux/petSlice/slice';
 import { Divider, Layout, Button } from '@ui-kitten/components';
 import { API_URL, APP_NAME } from '@env';
@@ -21,6 +22,7 @@ import {
 export function Example() {
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
+  const { changeTheme } = useTheme();
   const petState = useAppSelector((state: RootState) => state.petState);
   const [data, setData] = useState<IJsonResponse | undefined>();
 
@@ -30,7 +32,7 @@ export function Example() {
   };
 
   return (
-    <Layout style={{ flex: 1, padding: 16 }} level="2">
+    <Layout style={{ flex: 1, padding: 16 }} level="1">
       <ScrollView>
         <Text>Tela Exemplo</Text>
         <Text>Exemplo Redux</Text>
@@ -78,6 +80,10 @@ export function Example() {
         <Divider style={{ marginVertical: 16 }} />
         <Text>Exemplo Map</Text>
         <Button onPress={() => navigation.navigate('Map')}>Navegar</Button>
+
+        <Divider style={{ marginVertical: 16 }} />
+        <Text>Exemplo HookTheme</Text>
+        <Button onPress={() => changeTheme()}>Mudar Tema</Button>
       </ScrollView>
     </Layout>
   );
