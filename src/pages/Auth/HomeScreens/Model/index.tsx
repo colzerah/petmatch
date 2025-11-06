@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
-import { Input } from '../../ui/Input';
-import { FloatButton } from '../../ui/FloatButton';
+import { FloatButton } from '@ui/FloatButton';
+import { Input } from '@ui/Input';
 
 export function Model() {
   return (

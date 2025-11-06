@@ -1,9 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, Text } from 'react-native';
-import { RootState } from '../../redux/store';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { useTheme } from '../../hooks/useTheme';
-import { petActions } from '../../redux/petSlice/slice';
+import { RootState } from '@redux/store';
+import { useAppDispatch, useAppSelector } from '@hooks/useRedux';
+import { petActions } from '@redux/petSlice/slice';
 import { Divider, Layout, Button } from '@ui-kitten/components';
 import { API_URL, APP_NAME } from '@env';
 
@@ -17,7 +16,11 @@ import { useState } from 'react';
 import {
   IJsonResponse,
   requestJson,
-} from '../../services/requests/ModalRequest';
+} from '../../../../services/requests/ModalRequest';
+import Geolocation, {
+  GeolocationConfiguration,
+} from '@react-native-community/geolocation';
+import { useTheme } from '@/hooks/useTheme';
 
 export function Example() {
   const navigation = useNavigation<any>();
@@ -27,9 +30,55 @@ export function Example() {
   const [data, setData] = useState<IJsonResponse | undefined>();
 
   const handleRequest = async () => {
-    const response = await requestJson();
-    setData(response);
+    try {
+      const response = await requestJson();
+      setData(response);
+    } catch (err) {
+      console.log('Request erro', err);
+      setData({
+        slideshow: {
+          author: '',
+          date: '',
+          title: 'falsy',
+          slides: [],
+        },
+      });
+    }
   };
+
+  const config = {
+    skipPermissionRequests: false,
+    authorizationLevel: 'always',
+    enableBackgroundLocationUpdates: true,
+    locationProvider: 'auto',
+  } as GeolocationConfiguration;
+
+  Geolocation.setRNConfiguration(config);
+
+  function getCurrentLocation() {
+    Geolocation.requestAuthorization();
+
+    Geolocation.getCurrentPosition(
+      async success => {
+        console.log('📍 Localização atual:', success);
+        navigation.navigate('Map');
+      },
+      // pos => {
+      //   const { latitude, longitude } = pos.coords;
+      //   setPosition({ latitude, longitude });
+      //   console.log('📍 Localização atual:', latitude, longitude);
+      // },
+      error => {
+        console.log('❌ Erro ao obter localização:', error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+        useSignificantChanges: false,
+      },
+    );
+  }
 
   return (
     <Layout style={{ flex: 1, padding: 16 }} level="1">
@@ -79,11 +128,14 @@ export function Example() {
 
         <Divider style={{ marginVertical: 16 }} />
         <Text>Exemplo Map</Text>
-        <Button onPress={() => navigation.navigate('Map')}>Navegar</Button>
-
-        <Divider style={{ marginVertical: 16 }} />
-        <Text>Exemplo HookTheme</Text>
-        <Button onPress={() => changeTheme()}>Mudar Tema</Button>
+        <Button
+          onPress={() => {
+            getCurrentLocation();
+            // navigation.navigate('Map');
+          }}
+        >
+          Navegar
+        </Button>
       </ScrollView>
     </Layout>
   );

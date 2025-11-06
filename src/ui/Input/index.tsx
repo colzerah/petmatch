@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { container, content, inputKitStyle } from './styles';
 import { Input as InputKit } from '@ui-kitten/components';
 import { EvaSize, EvaStatus } from '@ui-kitten/components/devsupport';

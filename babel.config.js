@@ -10,5 +10,25 @@ module.exports = {
         allowUndefined: true,
       },
     ],
+    'react-native-worklets/plugin',
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+        alias: {
+          '@': './src',
+          '@pages': './src/pages',
+          '@ui': './src/ui',
+          '@assets': './src/assets',
+          '@hooks': './src/hooks',
+          '@services': './src/services',
+          '@theme': './src/theme',
+          '@redux': './src/redux',
+          '@dtos': './src/dtos',
+          '@routes': './src/routes',
+        },
+      },
+    ],
   ],
 };

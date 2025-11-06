@@ -5,13 +5,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import * as eva from '@eva-design/eva';
-import { AppRoutes } from './routes/app.routes';
 import { ThemeProvider } from './hooks/useTheme';
+import Routes from './routes';
 
-LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate`']);
+LogBox.ignoreLogs([
+  'Sending `onAnimatedValueUpdate`',
+  'Failed to open debugger',
+  'HeadersTimeoutError',
+]);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
   const theme = isDarkMode ? eva.dark : eva.light;
 
   return (
@@ -20,9 +24,9 @@ function App() {
         <ThemeProvider>
           <NavigationContainer>
             <StatusBar
-              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
             />
-            <AppRoutes />
+            <Routes />
           </NavigationContainer>
         </ThemeProvider>
       </Provider>
