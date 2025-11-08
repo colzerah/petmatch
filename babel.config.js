@@ -10,7 +10,6 @@ module.exports = {
         allowUndefined: true,
       },
     ],
-    'react-native-worklets/plugin',
     [
       'module-resolver',
       {
@@ -30,5 +29,6 @@ module.exports = {
         },
       },
     ],
+    'react-native-worklets/plugin',
   ],
 };
