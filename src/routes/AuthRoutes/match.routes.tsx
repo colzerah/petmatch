@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Match } from '@pages/Auth/MatchScreens/Match';
-import { RootStackParamsList } from '@dtos/routeDTO';
+import { Match } from '@/pages/Auth/MatchScreens/Match';
+import { RootStackParamsList } from '@/dtos/routeDTO';
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 

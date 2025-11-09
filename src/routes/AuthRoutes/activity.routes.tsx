@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RootStackParamsList } from '@dtos/routeDTO';
-import { Stores } from '@pages/Auth/ActivityScreens/Stores';
-import { Veterinarians } from '@pages/Auth/ActivityScreens/Veterinarians';
-import { Activities } from '@pages/Auth/ActivityScreens/Activities';
-import { Adoptions } from '@pages/Auth/ActivityScreens/Adoptions';
+import { RootStackParamsList } from '@/dtos/routeDTO';
+import { Stores } from '@/pages/Auth/ActivityScreens/Stores';
+import { Veterinarians } from '@/pages/Auth/ActivityScreens/Veterinarians';
+import { Activities } from '@/pages/Auth/ActivityScreens/Activities';
+import { Adoptions } from '@/pages/Auth/ActivityScreens/Adoptions';
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 

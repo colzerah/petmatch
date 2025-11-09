@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, Text } from 'react-native';
-import { RootState } from '@redux/store';
-import { useAppDispatch, useAppSelector } from '@hooks/useRedux';
-import { petActions } from '@redux/petSlice/slice';
+import { RootState } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
+import { petActions } from '@/redux/petSlice/slice';
 import { Divider, Layout, Button } from '@ui-kitten/components';
 import { API_URL, APP_NAME } from '@env';
 

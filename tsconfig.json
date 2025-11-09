@@ -5,16 +5,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@pages/*": ["src/pages/*"],
-      "@ui/*": ["src/ui/*"],
-      "@assets/*": ["src/assets/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@services/*": ["src/services/*"],
-      "@theme/*": ["src/theme/*"],
-      "@redux/*": ["src/redux/*"],
-      "@dtos/*": ["src/dtos/*"],
-      "@routes/*": ["src/routes/*"]
+      "@/*": ["src/*"]
     }
   }
 }

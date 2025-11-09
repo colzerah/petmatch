@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Works } from '@pages/Auth/WorksScreens/Works';
-import { RootStackParamsList } from '@dtos/routeDTO';
-import { Jobs } from '@pages/Auth/WorksScreens/Jobs';
+import { Works } from '@/pages/Auth/WorksScreens/Works';
+import { RootStackParamsList } from '@/dtos/routeDTO';
+import { Jobs } from '@/pages/Auth/WorksScreens/Jobs';
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 
