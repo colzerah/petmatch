@@ -1,3 +1,4 @@
+import '../global.css';
 import React from 'react';
 import { StatusBar, useColorScheme, LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,6 +11,7 @@ LogBox.ignoreLogs([
   'Sending `onAnimatedValueUpdate`',
   'Failed to open debugger',
   'HeadersTimeoutError',
+  'SafeAreaView has been deprecated',
 ]);
 
 function App() {

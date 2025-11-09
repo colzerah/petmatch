@@ -12,7 +12,6 @@ import MapView, {
   Marker,
   PROVIDER_GOOGLE,
 } from 'react-native-maps';
-import { Layout } from '@ui-kitten/components';
 import MapViewDirections from 'react-native-maps-directions';
 import { useEffect, useRef, useState } from 'react';
 import Geolocation from '@react-native-community/geolocation';
@@ -224,7 +223,7 @@ export function Map() {
   };
 
   return (
-    <Layout style={{ flex: 1 }} level="2">
+    <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
       <View style={{ position: 'absolute', top: 60, right: 10, zIndex: 999 }}>
         <Button
           title="Iniciar Navegação 🚗"
@@ -295,6 +294,6 @@ export function Map() {
           // strokeColors={['brown', 'green', 'red', 'blue']}
         />
       </MapView>
-    </Layout>
+    </View>
   );
 }

@@ -4,7 +4,7 @@ import { RootState } from '@/redux/store';
 import { useAppSelector } from '@/hooks/useRedux';
 // import { petActions } from '@/redux/petSlice/slice';
 // import { GluestackButton } from '../../../../components/ui/GluestackButton';
-// import { Button, ButtonText } from '../../../../components/ui/button';
+import { Button, ButtonText } from '../../../../components/ui/button';
 
 export function Home() {
   // const dispatch = useAppDispatch();
@@ -29,9 +29,9 @@ export function Home() {
       >
         Usar Redux
       </Button> */}
-      {/* <Button variant="solid" size="md" action="primary">
+      <Button variant="solid" size="xl" action="primary">
         <ButtonText>Click me</ButtonText>
-      </Button> */}
+      </Button>
       {/* <GluestackButton title="teste" onPress={() => console.log('teste')} /> */}
     </View>
   );

@@ -7,7 +7,7 @@ export function Model() {
       <Text style={{ margin: 10 }}>Model Page</Text>
 
       <View style={{ width: 300 }}>
-        <Input placeholder="Digite aqui" />
+        <Input placeholder="Digite aqui" label="teste" />
       </View>
       <Text style={{ alignItems: 'center', marginTop: 10 }}>Input Content</Text>
     </View>

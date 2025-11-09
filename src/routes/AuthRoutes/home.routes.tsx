@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 export function HomeRoutes() {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Example">
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Example" component={Example} />
       <Stack.Screen name="Map" component={Map} />

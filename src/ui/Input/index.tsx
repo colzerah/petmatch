@@ -1,48 +1,59 @@
-import { View } from 'react-native';
-import { container, content, inputKitStyle } from './styles';
-import { Input as InputKit } from '@ui-kitten/components';
-import { EvaSize, EvaStatus } from '@ui-kitten/components/devsupport';
+import { View, Text } from 'react-native';
+import {
+  Input as GluestackInput,
+  InputField,
+  InputSlot,
+} from '@/components/ui/input';
+
+type InputSize = 'sm' | 'md' | 'lg' | 'xl';
 
 interface IInputProps {
   disabled?: boolean;
   value?: string;
-  size?: EvaSize;
+  size?: InputSize;
   placeholder?: string;
   label?: string;
-  onChange?: () => void;
+  onChange?: (text: string) => void;
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;
-  status?: EvaStatus;
+  isInvalid?: boolean;
+  secureTextEntry?: boolean;
 }
 
 export function Input({
   disabled,
   value,
-  size = 'medium',
+  size = 'md',
   placeholder,
   label,
   onChange,
   iconLeft,
   iconRight,
-  status = 'primary',
+  isInvalid = false,
+  secureTextEntry = false,
 }: IInputProps) {
   return (
-    <View style={container}>
-      <View style={content}>
-        <InputKit
-          disabled={disabled}
-          value={value}
-          size={size}
+    <View>
+      {label && (
+        <Text className="text-sm font-medium mb-1 text-typography-900">
+          {label}
+        </Text>
+      )}
+      <GluestackInput
+        variant="outline"
+        size={size}
+        isDisabled={disabled}
+        isInvalid={isInvalid}
+      >
+        {iconLeft && <InputSlot className="pl-3">{iconLeft}</InputSlot>}
+        <InputField
           placeholder={placeholder}
-          label={label}
-          secureTextEntry={true}
+          value={value}
           onChangeText={onChange}
-          accessoryLeft={iconLeft}
-          accessoryRight={iconRight}
-          status={status}
-          style={inputKitStyle}
+          secureTextEntry={secureTextEntry}
         />
-      </View>
+        {iconRight && <InputSlot className="pr-3">{iconRight}</InputSlot>}
+      </GluestackInput>
     </View>
   );
 }
