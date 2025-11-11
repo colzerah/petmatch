@@ -23,6 +23,7 @@ type RootStackHomeList = {
   Example: undefined;
   Map: undefined;
   Model: undefined;
+  Componentes: undefined;
 };
 
 type RootStackMatchList = {
