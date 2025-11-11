@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { Input } from '@/ui/Input';
+import { Input } from '@/components/Input';
 
 export function Model() {
   return (
@@ -7,7 +7,7 @@ export function Model() {
       <Text style={{ margin: 10 }}>Model Page</Text>
 
       <View style={{ width: 300 }}>
-        <Input placeholder="Digite aqui" label="teste" />
+        <Input placeholder="Digite aqui" />
       </View>
       <Text style={{ alignItems: 'center', marginTop: 10 }}>Input Content</Text>
     </View>

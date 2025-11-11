@@ -5,8 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
-import { ToastProvider } from '@gluestack-ui/core/toast/creator';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 
 import Routes from './routes';
 LogBox.ignoreLogs([
@@ -17,21 +16,20 @@ LogBox.ignoreLogs([
 ]);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'light';
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
 
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        <OverlayProvider>
-          <ToastProvider>
-            <NavigationContainer>
-              <StatusBar
-                barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
-              />
-              <Routes />
-            </NavigationContainer>
-          </ToastProvider>
-        </OverlayProvider>
+        <GluestackUIProvider mode="light">
+          <NavigationContainer>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            />
+            <Routes />
+          </NavigationContainer>
+        </GluestackUIProvider>
       </Provider>
     </SafeAreaProvider>
   );
