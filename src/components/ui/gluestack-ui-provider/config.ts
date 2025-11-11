@@ -1,4 +1,4 @@
-'use client';
+('use client');
 import { vars } from 'nativewind';
 
 function hexToRgb(hex: string): string {
@@ -10,9 +10,10 @@ function hexToRgb(hex: string): string {
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
 
-  console.log('RETURN', `${r} ${g} ${b}`);
   return `${r} ${g} ${b}`;
 }
+
+// referencia de thema https://github.com/gluestack/gluestack-ui/blob/main/apps/kitchen-sink/components/custom/component-previewer/index.tsx
 
 export const config = {
   light: vars({

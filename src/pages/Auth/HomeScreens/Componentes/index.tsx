@@ -13,9 +13,9 @@ export function Componentes() {
     toast.show({
       title: 'Sucesso!',
       description: 'Operação realizada com sucesso',
-      action: 'info',
+      action: 'success',
       variant: 'solid',
-      placement: 'top',
+      placement: 'bottom',
       duration: 3000,
     });
   };
