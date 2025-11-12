@@ -12,12 +12,15 @@ rm -rf node_modules/.cache
 echo "👀 Limpando Watchman..."
 watchman watch-del-all || true
 
+echo "🧹 Limpando DerivedData do Xcode..."
+rm -rf ~/Library/Developer/Xcode/DerivedData
+
 echo "🗑️ Limpando Pods..."
 cd ios
-rm -rf Pods Podfile.lock
+rm -rf Pods Podfile.lock build
 
 echo "📦 Reinstalando Pods..."
-pod install
+bundle exec pod install --project-directory=.
 
 
 
