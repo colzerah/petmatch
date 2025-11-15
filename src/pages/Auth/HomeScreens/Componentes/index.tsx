@@ -5,6 +5,7 @@ import { HStack } from '@/components/HStack';
 import { useToast } from '@/hooks/useToast';
 import { Input } from '@/components/Input';
 import { View } from 'react-native';
+import FirebaseIDExample from '@/examples/FirebaseIDExample';
 import { Badge } from '@/components/Badge';
 
 export function Componentes() {
@@ -37,6 +38,8 @@ export function Componentes() {
           uri="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         />
       </HStack>
+      <Divider />
+      <FirebaseIDExample />
       <Divider />
       <HStack>
         <Badge
