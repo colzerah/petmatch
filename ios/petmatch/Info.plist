@@ -24,6 +24,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlechromes</string>
@@ -43,17 +45,17 @@
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
+				<key>NSRequiresHTTP3</key>
+				<false/>
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSTemporaryExceptionMinim umTLSVersion</key>
 				<string>TLSv1.2</string>
-				<key>NSRequiresHTTP3</key>
-      	<false/>
 				<key>localhost</key>
-					<dict>
-						<key>NSExceptionAllowsInsecureHTTPLoads</key>
-						<true/>
-					</dict>
+				<dict>
+					<key>NSExceptionAllowsInsecureHTTPLoads</key>
+					<true/>
+				</dict>
 			</dict>
 		</dict>
 	</dict>
@@ -68,6 +70,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
