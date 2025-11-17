@@ -6,9 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { initializeNotifications } from './services/notifications';
+import { initializeNotifications } from './services/push/notifications';
 
 import Routes from './routes';
+
 LogBox.ignoreLogs([
   'Sending `onAnimatedValueUpdate`',
   'Failed to open debugger',

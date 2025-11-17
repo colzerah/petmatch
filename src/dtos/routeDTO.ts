@@ -24,6 +24,7 @@ type RootStackHomeList = {
   Map: undefined;
   Model: undefined;
   Componentes: undefined;
+  PushModel: undefined;
 };
 
 type RootStackMatchList = {

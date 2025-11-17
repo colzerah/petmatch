@@ -5,7 +5,7 @@ import { HStack } from '@/components/HStack';
 import { useToast } from '@/hooks/useToast';
 import { Input } from '@/components/Input';
 import { View } from 'react-native';
-import FirebaseIDExample from '@/examples/FirebaseIDExample';
+
 import { Badge } from '@/components/Badge';
 
 export function Componentes() {
@@ -39,7 +39,7 @@ export function Componentes() {
         />
       </HStack>
       <Divider />
-      <FirebaseIDExample />
+
       <Divider />
       <HStack>
         <Badge

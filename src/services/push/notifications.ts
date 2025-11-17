@@ -4,21 +4,86 @@ import messaging, {
 import firebase from '@react-native-firebase/app';
 import { Platform, PermissionsAndroid } from 'react-native';
 
-// Verifica se o Firebase está configurado (GoogleService-Info.plist / google-services.json)
-const isFirebaseConfigured = (): boolean => {
+// Handler para mensagens recebidas quando app está em BACKGROUND ou QUIT index.js
+export const setupBackgroundMessaging = () => {
   try {
-    // Se não houver app default, `firebase.app()` lança 'app/no-app'
-    firebase.app();
-    return true;
-  } catch {
-    return false;
+    if (!isFirebaseConfigured()) {
+      console.log(
+        'Firebase: não configurado. setBackgroundMessageHandler não será registrado.',
+      );
+      return;
+    }
+
+    const firebaseMessaging = messaging();
+    if (
+      firebaseMessaging &&
+      typeof firebaseMessaging.setBackgroundMessageHandler === 'function'
+    ) {
+      firebaseMessaging.setBackgroundMessageHandler(
+        async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
+          console.log(
+            '📨 Firebase: Mensagem recebida em background:',
+            JSON.stringify(remoteMessage, null, 2),
+          );
+
+          // TODO: Processar mensagem em background
+          // Nota: Não é possível atualizar UI aqui
+        },
+      );
+    }
+  } catch (e) {
+    console.log(
+      '[FCM] setBackgroundMessageHandler indisponível.',
+      e instanceof Error ? e.message : e,
+    );
   }
 };
 
-/**
- * Log detalhado do estado de configuração do Firebase.
- * Útil para diagnosticar ausência de plist ou json nativos.
- */
+// Inicializa todos os handlers de notificação em App.tsx
+export const initializeNotifications = async (): Promise<
+  (() => void) | void
+> => {
+  try {
+    // Diagnóstico inicial
+    logFirebaseDiagnostics();
+
+    // 1. Solicitar permissão
+    const hasPermission = await requestNotificationPermission();
+
+    if (!hasPermission) {
+      console.log('❌ Firebase: Sem permissão para notificações');
+      return;
+    }
+
+    // 2. Garantir registro do dispositivo para mensagens remotas
+    try {
+      await messaging().registerDeviceForRemoteMessages();
+    } catch {
+      console.log(
+        'Firebase: dispositivo já registrado ou falha controlada ao registrar remote messages.',
+      );
+    }
+
+    // 3. Configurar handler para app em foreground
+    const unsubscribeForeground = setupForegroundNotificationHandler();
+
+    // 4. Configurar handler para quando usuário toca na notificação
+    setupNotificationOpenedHandler();
+
+    // 5. Configurar listener para atualização de token
+    const unsubscribeTokenRefresh = setupTokenRefreshListener();
+
+    // Retornar função de cleanup
+    return () => {
+      unsubscribeForeground();
+      unsubscribeTokenRefresh();
+    };
+  } catch (error) {
+    console.error('❌ Firebase: Erro ao inicializar notificações:', error);
+  }
+};
+
+// Log detalhado do estado de configuração do Firebase.
 export const logFirebaseDiagnostics = () => {
   const configured = isFirebaseConfigured();
   console.log('[FirebaseDiag] isConfigured:', configured);
@@ -37,10 +102,7 @@ export const logFirebaseDiagnostics = () => {
   }
 };
 
-/**
- * Solicita permissão para receber notificações push
- * @returns Promise<boolean> - true se permissão foi concedida
- */
+// Solicita permissão para receber notificações push
 export const requestNotificationPermission = async (): Promise<boolean> => {
   try {
     if (!isFirebaseConfigured()) {
@@ -88,15 +150,17 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
   }
 };
 
-// getInstallationId removido - não é necessário para FCM básico
-// O Firebase Messaging gerencia Installation IDs internamente
+// Verifica se o Firebase está configurado (GoogleService-Info.plist / google-services.json)
+const isFirebaseConfigured = (): boolean => {
+  try {
+    firebase.app();
+    return true;
+  } catch {
+    return false;
+  }
+};
 
-// getInstallationAuthToken removido - não é necessário para FCM básico
-
-/**
- * Obtém o token FCM do dispositivo
- * @returns Promise<string | null> - Token FCM ou null se houver erro
- */
+// Obtém o token FCM do dispositivo
 export const getDeviceToken = async (): Promise<string | null> => {
   try {
     if (!isFirebaseConfigured()) {
@@ -121,7 +185,7 @@ export const getDeviceToken = async (): Promise<string | null> => {
     console.log('🔑 Obtendo FCM Token...');
     let token = await messaging().getToken();
 
-    // Retry simples se vier vazio (algumas vezes antes da APNs estar pronta)
+    // Retry simples se vier vazio
     if (!token) {
       console.log('⏳ Firebase: FCM token vazio, tentando novamente em 3s...');
       await new Promise<void>(resolve => setTimeout(() => resolve(), 3000));
@@ -145,10 +209,60 @@ export const getDeviceToken = async (): Promise<string | null> => {
   }
 };
 
-/**
- * Handler para mensagens recebidas quando app está em FOREGROUND
- * Retorna função de cleanup para remover listener
- */
+// Deleta o token FCM do dispositivo
+export const deleteDeviceToken = async (): Promise<void> => {
+  try {
+    if (!isFirebaseConfigured()) {
+      console.log(
+        '❌ Firebase: não configurado. Não é possível deletar token.',
+      );
+      return;
+    }
+    await messaging().deleteToken();
+    console.log('✅ Firebase: Token FCM deletado com sucesso');
+  } catch (error) {
+    console.error('❌ Firebase: Erro ao deletar token FCM:', error);
+  }
+};
+
+// Listener para quando o token FCM é atualizado/renovado
+export const setupTokenRefreshListener = () => {
+  if (!isFirebaseConfigured()) {
+    console.log(
+      'Firebase: não configurado. onTokenRefresh não será registrado.',
+    );
+    return () => {};
+  }
+
+  const unsubscribe = messaging().onTokenRefresh(async (token: string) => {
+    console.log('🔄 Firebase: FCM Token atualizado:', token);
+
+    // TODO: Enviar novo token para backend
+    // await api.put('/users/fcm-token', { token });
+  });
+
+  return unsubscribe;
+};
+
+// Obtém informações do dispositivo (FCM Token e plataforma)
+export const getDeviceInfo = async () => {
+  try {
+    const fcmToken = await getDeviceToken();
+
+    const deviceInfo = {
+      fcmToken,
+      platform: Platform.OS,
+    };
+
+    console.log('📱 Firebase: Device Info:', deviceInfo);
+    return deviceInfo;
+  } catch (error) {
+    console.error('❌ Firebase: Erro ao obter device info:', error);
+    return null;
+  }
+};
+
+// Handler para mensagens recebidas quando app está em FOREGROUND
 export const setupForegroundNotificationHandler = () => {
   if (!isFirebaseConfigured()) {
     console.log('Firebase: não configurado. onMessage não será registrado.');
@@ -158,62 +272,32 @@ export const setupForegroundNotificationHandler = () => {
   const unsubscribe = messaging().onMessage(
     async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
       console.log(
-        'Firebase: Mensagem recebida em foreground:',
+        '📨 Firebase: Mensagem recebida em foreground:',
         JSON.stringify(remoteMessage, null, 2),
       );
 
-      // Dados da mensagem
       const { notification, data } = remoteMessage;
 
       if (notification) {
-        console.log('Firebase: Título:', notification.title);
-        console.log('Firebase: Corpo:', notification.body);
+        console.log('📌 Título:', notification.title);
+        console.log('📌 Corpo:', notification.body);
       }
 
       if (data) {
-        console.log('Firebase: Data payload:', data);
+        console.log('📦 Data payload:', data);
       }
 
       // TODO: Adicionar lógica customizada aqui:
       // - Mostrar notificação local
       // - Atualizar Redux store
       // - Tocar som customizado
-      // - Vibrar dispositivo
     },
   );
 
   return unsubscribe;
 };
 
-/**
- * Handler para mensagens recebidas quando app está em BACKGROUND ou QUIT
- * Deve ser registrado fora do componente (index.js)
- */
-export const setupBackgroundMessageHandler = () => {
-  if (!isFirebaseConfigured()) {
-    console.log(
-      'Firebase: não configurado. setBackgroundMessageHandler não será registrado.',
-    );
-    return;
-  }
-
-  messaging().setBackgroundMessageHandler(
-    async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-      console.log(
-        'Firebase: Mensagem recebida em background:',
-        JSON.stringify(remoteMessage, null, 2),
-      );
-
-      // TODO: Processar mensagem em background
-      // Nota: Não é possível atualizar UI aqui
-    },
-  );
-};
-
-/**
- * Handler para quando usuário TOCA na notificação
- * App estava em background ou fechado
- */
+// Handler para quando usuário TOCA na notificação
 export const setupNotificationOpenedHandler = () => {
   if (!isFirebaseConfigured()) {
     console.log(
@@ -221,11 +305,12 @@ export const setupNotificationOpenedHandler = () => {
     );
     return;
   }
+
   // App foi aberto pela notificação (estava em background)
   messaging().onNotificationOpenedApp(
     (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
       console.log(
-        'Firebase: App aberto pela notificação (background):',
+        '👆 Firebase: App aberto pela notificação (background):',
         remoteMessage,
       );
 
@@ -240,7 +325,7 @@ export const setupNotificationOpenedHandler = () => {
     .then((remoteMessage: FirebaseMessagingTypes.RemoteMessage | null) => {
       if (remoteMessage) {
         console.log(
-          'Firebase: App aberto pela notificação (fechado):',
+          '👆 Firebase: App aberto pela notificação (fechado):',
           remoteMessage,
         );
 
@@ -249,115 +334,12 @@ export const setupNotificationOpenedHandler = () => {
     });
 };
 
-/**
- * Listener para quando o token FCM é atualizado/renovado
- */
-export const setupTokenRefreshListener = () => {
-  if (!isFirebaseConfigured()) {
-    console.log(
-      'Firebase: não configurado. onTokenRefresh não será registrado.',
-    );
-    return () => {};
-  }
-
-  const unsubscribe = messaging().onTokenRefresh(async (token: string) => {
-    console.log('Firebase: FCM Token atualizado:', token);
-
-    // TODO: Enviar novo token para backend
-    // await api.put('/users/fcm-token', { token });
-  });
-
-  return unsubscribe;
-};
-
-/**
- * Obtém informações do dispositivo (FCM Token e plataforma)
- * @returns Promise com FCM Token e platform
- */
-export const getDeviceInfo = async () => {
-  try {
-    const fcmToken = await getDeviceToken();
-
-    const deviceInfo = {
-      fcmToken,
-      platform: Platform.OS,
-    };
-
-    console.log('Firebase: Device Info:', deviceInfo);
-    return deviceInfo;
-  } catch (error) {
-    console.error('Firebase: Erro ao obter device info:', error);
-    return null;
-  }
-};
-
-/**
- * Deleta o token FCM do dispositivo
- */
+// Deleta o token FCM do dispositivo
 export const deleteInstallation = async () => {
   try {
     await messaging().deleteToken();
     console.log('Firebase: Token FCM deletado com sucesso');
   } catch (error) {
     console.error('Firebase: Erro ao deletar token FCM:', error);
-  }
-};
-
-/**
- * Remove todas as notificações entregues
- */
-export const clearAllNotifications = async () => {
-  try {
-    await messaging().deleteToken();
-    console.log('Firebase: Token FCM deletado');
-  } catch (error) {
-    console.error('Firebase: Erro ao deletar token:', error);
-  }
-};
-
-/**
- * Inicializa todos os handlers de notificação
- * Chame esta função no App.tsx dentro de useEffect
- * @returns Função de cleanup para remover listeners
- */
-export const initializeNotifications = async (): Promise<
-  (() => void) | void
-> => {
-  try {
-    // Diagnóstico inicial
-    logFirebaseDiagnostics();
-    // 1. Solicitar permissão
-    const hasPermission = await requestNotificationPermission();
-
-    if (!hasPermission) {
-      console.log('Firebase: Sem permissão para notificações');
-      return;
-    }
-
-    // 1.1 Garantir registro do dispositivo para mensagens remotas (especialmente iOS físico)
-    try {
-      await messaging().registerDeviceForRemoteMessages();
-    } catch {
-      console.log(
-        'Firebase: dispositivo já registrado ou falha controlada ao registrar remote messages.',
-      );
-    }
-
-    // 2. Configurar handler para app em foreground
-    const unsubscribeForeground = setupForegroundNotificationHandler();
-
-    // 3. Configurar handler para quando usuário toca na notificação
-    setupNotificationOpenedHandler();
-
-    // 4. Configurar listener para atualização de token
-    const unsubscribeTokenRefresh = setupTokenRefreshListener();
-
-    // Retornar função de cleanup
-    return () => {
-      unsubscribeForeground();
-      unsubscribeTokenRefresh();
-    };
-  } catch (error) {
-    console.error('Firebase: Erro ao inicializar notificações:', error);
   }
 };
