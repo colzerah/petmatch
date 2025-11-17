@@ -1,9 +1,12 @@
-import { Textarea, TextareaInput } from '@/components/ui/textarea';
+import {
+  Textarea as TextareaGluestack,
+  TextareaInput,
+} from '@/components/ui/textarea';
 import { View } from 'react-native';
 import { container } from './styles';
 import { TextAreaProps } from './textareaDTO';
 
-export function TextArea({
+export function Textarea({
   size,
   invalid,
   disabled,
@@ -11,14 +14,14 @@ export function TextArea({
 }: TextAreaProps) {
   return (
     <View style={container}>
-      <Textarea
+      <TextareaGluestack
         size={size}
         isInvalid={invalid}
         isDisabled={disabled}
         className="w-80"
       >
         <TextareaInput placeholder={placeholder} />
-      </Textarea>
+      </TextareaGluestack>
     </View>
   );
 }
