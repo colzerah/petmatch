@@ -7,6 +7,7 @@ import { Input } from '@/components/Input';
 import { View } from 'react-native';
 
 import { Badge } from '@/components/Badge';
+import { Alert } from '@/components/Alert';
 
 export function Componentes() {
   const toast = useToast();
@@ -48,6 +49,15 @@ export function Componentes() {
           size="lg"
           title="Senha"
           iconName="EyeIcon"
+        />
+      </HStack>
+      <Divider />
+      <HStack>
+        <Alert
+          action="error"
+          variant="solid"
+          title="Teste de Alert"
+          iconName="InfoIcon"
         />
       </HStack>
       <Divider />

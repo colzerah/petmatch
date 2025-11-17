@@ -1,7 +1,8 @@
 import { View } from 'react-native';
 import { Badge as BadgeGluestack, BadgeText, BadgeIcon } from '../ui/badge';
 import { container } from './styles';
-import { BadgeProps, ICON_MAP } from './badgeDTO';
+import { BadgeProps } from './badgeDTO';
+import { ICON_MAP } from '@/dtos/iconDTO';
 
 export function Badge({ iconName, action, variant, size, title }: BadgeProps) {
   const IconComponent = iconName ? ICON_MAP[iconName] : null;
