@@ -10,10 +10,12 @@ export function Button({
   size,
   action,
   disabled,
+  ...props
 }: ButtonProps) {
   return (
     <View style={container}>
       <ButtonGluestack
+        {...props}
         variant={variant || 'solid'}
         size={size || 'md'}
         action={action || 'primary'}
