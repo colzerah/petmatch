@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 export function HomeRoutes() {
   return (
-    <Stack.Navigator initialRouteName="PushModel">
+    <Stack.Navigator initialRouteName="Componentes">
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Componentes" component={Componentes} />
       <Stack.Screen name="Example" component={Example} />
