@@ -8,6 +8,7 @@ import { View } from 'react-native';
 
 import { Badge } from '@/components/Badge';
 import { Alert } from '@/components/Alert';
+import { Menu } from '@/components/Menu';
 
 export function Componentes() {
   const toast = useToast();
@@ -61,6 +62,16 @@ export function Componentes() {
         />
       </HStack>
       <Divider />
+      <HStack>
+        <Menu
+          title="Menu "
+          items={[
+            { value: 'Site', iconName: 'GlobeIcon' },
+            { value: 'Configurações', iconName: 'SettingsIcon' },
+            { value: 'Ajuda', iconName: 'HelpCircleIcon' },
+          ]}
+        />
+      </HStack>
     </View>
   );
 }
