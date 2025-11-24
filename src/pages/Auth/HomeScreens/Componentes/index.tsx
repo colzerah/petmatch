@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import { Badge } from '@/components/Badge';
 import { Alert } from '@/components/Alert';
 import { Menu } from '@/components/Menu';
+import { Select } from '@/components/Select';
 
 export function Componentes() {
   const toast = useToast();
@@ -64,7 +65,7 @@ export function Componentes() {
       <Divider />
       <HStack>
         <Menu
-          title="Menu "
+          title="Menu"
           items={[
             { value: 'Site', iconName: 'GlobeIcon' },
             { value: 'Configurações', iconName: 'SettingsIcon' },
@@ -72,6 +73,19 @@ export function Componentes() {
           ]}
         />
       </HStack>
+      <Divider />
+      <HStack>
+        <Select
+          placeholder="a"
+          variant="outline"
+          size="md"
+          items={[
+            { value: 'teste', label: 'uhasuhasuhasuash' },
+            { value: 'teste2', label: 'teste 2' },
+          ]}
+        />
+      </HStack>
+      <Divider />
     </View>
   );
 }
