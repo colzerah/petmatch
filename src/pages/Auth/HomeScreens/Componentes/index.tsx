@@ -10,6 +10,7 @@ import { Badge } from '@/components/Badge';
 import { Alert } from '@/components/Alert';
 import { Menu } from '@/components/Menu';
 import { Select } from '@/components/Select';
+import { ActionSheet } from '@/components/ActionSheet';
 
 export function Componentes() {
   const toast = useToast();
@@ -83,6 +84,13 @@ export function Componentes() {
             { value: 'teste', label: 'uhasuhasuhasuash' },
             { value: 'teste2', label: 'teste 2' },
           ]}
+        />
+      </HStack>
+      <Divider />
+      <HStack>
+        <ActionSheet
+          title="open"
+          items={[{ value: 'Option 1' }, { value: 'Option 2' }]}
         />
       </HStack>
       <Divider />
