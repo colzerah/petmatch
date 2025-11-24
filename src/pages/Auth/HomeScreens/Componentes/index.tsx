@@ -11,6 +11,7 @@ import { Alert } from '@/components/Alert';
 import { Menu } from '@/components/Menu';
 import { Select } from '@/components/Select';
 import { ActionSheet } from '@/components/ActionSheet';
+import { Accordion } from '@/components/Accordion';
 
 export function Componentes() {
   const toast = useToast();
@@ -91,6 +92,22 @@ export function Componentes() {
         <ActionSheet
           title="open"
           items={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+        />
+      </HStack>
+      <Divider />
+      <HStack>
+        <Accordion
+          size="md"
+          variant="unfilled"
+          type="single"
+          items={[
+            {
+              header: 'Header 1',
+              content: 'Content 1',
+              value: 'item1',
+            },
+            { header: 'Header 2', content: 'Content 2', value: 'item2' },
+          ]}
         />
       </HStack>
       <Divider />
