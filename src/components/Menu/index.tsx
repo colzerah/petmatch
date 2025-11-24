@@ -18,12 +18,18 @@ export function Menu({
   placement,
   disabledKeys,
   title,
+  onOpen,
+  onClose,
+  crossOffset,
 }: MenuProps) {
   return (
     <View style={container}>
       <MenuGluestack
         placement={placement}
+        onOpen={onOpen}
+        onClose={onClose}
         offset={offset}
+        crossOffset={crossOffset}
         disabledKeys={disabledKeys}
         trigger={({ ...triggerProps }) => {
           return <Button {...triggerProps} title={title} />;

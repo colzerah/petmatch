@@ -25,6 +25,9 @@ export interface MenuProps {
   items: MenuItem[];
   placement?: MenuPlacement;
   offset?: number;
+  crossOffset?: number;
   disabledKeys?: string[];
   title?: string;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
