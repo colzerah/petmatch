@@ -1,22 +1,28 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { HomeStateProps } from '../../dtos/reduxDTO';
-import { Advertisements } from '../../dtos/advertisementsDTO';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const initialState = {
-  advertisements: [],
-} as HomeStateProps;
+interface HomeState {
+  news: any[];
+  infos: any[];
+}
+
+const initialState: HomeState = {
+  news: [],
+  infos: [],
+};
 
 const home = createSlice({
-  name: 'homeState',
+  name: "homeState",
   initialState: initialState,
   reducers: {
-    setAddAdvertisements: (state, action: PayloadAction<Advertisements[]>) => ({
-      ...state,
-      advertisements: action.payload,
-    }),
+    addNews: (state, action: PayloadAction<any[]>) => {
+      state.news = action.payload;
+    },
+    addInfos: (state, action: PayloadAction<any[]>) => {
+      state.infos = action.payload;
+    },
   },
 });
 
-export const homeActions = home.actions;
+export const { addNews, addInfos } = home.actions;
 
 export default home.reducer;

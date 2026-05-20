@@ -1,10 +1,6 @@
-export const RADIO_SIZES = ['sm', 'md', 'lg'] as const;
-
-export type RadioSize = (typeof RADIO_SIZES)[number];
-
 export interface RadioProps {
   value: string;
-  size?: RadioSize;
+  size?: "sm" | "md" | "lg";
   invalid?: boolean;
   disabled?: boolean;
   label?: string;

@@ -1,10 +1,8 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import petReducer from './petSlice/slice';
-import homeReducer from './homeSlice/slice';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import authReducer from "./authSlice/slice";
 
 const appReducer = combineReducers({
-  petState: petReducer,
-  homeState: homeReducer,
+  authState: authReducer,
 });
 
 export const store = configureStore({

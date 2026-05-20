@@ -14,7 +14,7 @@ import {
 } from "phosphor-react-native";
 import { Typography } from "@/components/Typography";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
-import { HStack } from "@/components/ui/hstack";
+import { HStack } from "@/components/Hstack";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { addToken, addUser, login } from "@/redux/authSlice/slice";
 import type { User } from "@/redux/authSlice/slice";
@@ -94,6 +94,7 @@ export function Login() {
   return (
     <Box className="flex flex-1 justify-center bg-primary-50">
       <VStack space="4xl">
+        {/* Logo abaixo */}
         <VStack space="lg" className="items-center">
           <Box>
             <Typography size="2xl" bold title="Logo" />
@@ -151,9 +152,11 @@ export function Login() {
         </Box>
 
         <Box className="items-center">
-          <HStack space="sm" className="items-center">
+          <HStack space="sm">
             <Typography title="ainda não tem uma conta?" />
-            <Button title="cadastre-se" variant="link" />
+            <Box className="items-start">
+              <Button title="cadastre-se" variant="link" />
+            </Box>
           </HStack>
         </Box>
       </VStack>

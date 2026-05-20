@@ -1,8 +1,12 @@
+import React from "react";
+
 export interface ButtonProps {
-  onPress: () => void;
+  onPress?: () => void;
   title: string;
-  variant?: 'solid' | 'link' | 'outline';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  action?: 'primary' | 'secondary' | 'positive' | 'negative' | 'default';
+  action?: "primary" | "secondary" | "positive" | "negative";
+  variant?: "solid" | "outline" | "link";
+  size?: "sm" | "md" | "lg" | "xl";
   disabled?: boolean;
+  iconLeft?: React.ComponentType<any>; // resolveu por enquanto
+  iconRight?: React.ComponentType<any>; // resolveu por enquanto
 }
