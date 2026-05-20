@@ -1,10 +1,13 @@
+export const CHECKBOX_SIZES = ['sm', 'md', 'lg'] as const;
+
+export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
+
 export interface CheckboxProps {
-  isDisabled?: boolean;
-  isInvalid?: boolean;
-  isRequired?: boolean;
+  disabled?: boolean;
+  invalid?: boolean;
+  size?: CheckboxSize;
   label?: string;
-  size?: "sm" | "md" | "lg";
-  isChecked?: boolean;
   value: string;
+  checked?: boolean;
   onChange?: (checked: boolean) => void;
 }

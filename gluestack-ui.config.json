@@ -1,0 +1,6 @@
+{
+  "platform": "react-native",
+  "projectType": "react-native",
+  "componentsPath": "src/components/ui",
+  "framework": "react-native"
+}

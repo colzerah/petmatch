@@ -1,21 +1,48 @@
-export type RootStackParamList = RootStackAuthList &
-  RootStackHomeList &
-  RootStackRegisterList;
+export type RootTabParamList = {
+  HomeScreens: undefined;
+  ActivityScreens: undefined;
+  MatchScreens: undefined;
+  WorksScreens: undefined;
+  ProfilesScreens: undefined;
+};
+
+export type RootStackParamsList = RootStackHomeList &
+  RootStackMatchList &
+  RootStackActivityList &
+  RootStackProfileList &
+  RootStackWorkList &
+  RootStackAuthList;
 
 type RootStackAuthList = {
   Login: undefined;
-  ResetPassword: undefined;
   Register: undefined;
 };
 
 type RootStackHomeList = {
   Home: undefined;
-  Pets: undefined;
+  Example: undefined;
+  Map: undefined;
+  Model: undefined;
+  Componentes: undefined;
+  PushModel: undefined;
 };
 
-type RootStackRegisterList = {
-  RegisterRoutes: undefined;
-  RegisterType: undefined;
-  RegisterForm: undefined;
-  RegisterValidation: undefined;
+type RootStackMatchList = {
+  Match: undefined;
+};
+
+type RootStackActivityList = {
+  Activities: undefined;
+  Stores: undefined;
+  Veterinarians: undefined;
+  Adoptions: undefined;
+};
+
+type RootStackProfileList = {
+  Profile: undefined;
+};
+
+type RootStackWorkList = {
+  Works: undefined;
+  Jobs: undefined;
 };

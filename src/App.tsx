@@ -1,21 +1,42 @@
 import '../global.css';
-import { useEffect } from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import React, { useEffect } from 'react';
+import { StatusBar, useColorScheme, LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import BootSplash from 'react-native-bootsplash';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { initializeNotifications } from './services/push/notifications';
 
 import Routes from './routes';
+
+LogBox.ignoreLogs([
+  'Sending `onAnimatedValueUpdate`',
+  'Failed to open debugger',
+  'HeadersTimeoutError',
+  'SafeAreaView has been deprecated',
+]);
 
 function App() {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 
   useEffect(() => {
-    BootSplash.hide({ fade: true });
+    // Inicializar Firebase Cloud Messaging
+    let cleanup: (() => void) | undefined;
+
+    initializeNotifications().then(unsubscribe => {
+      if (typeof unsubscribe === 'function') {
+        cleanup = unsubscribe;
+      }
+    });
+
+    // Cleanup listeners quando app é desmontado
+    return () => {
+      if (cleanup) {
+        cleanup();
+      }
+    };
   }, []);
 
   return (

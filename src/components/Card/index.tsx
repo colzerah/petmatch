@@ -1,14 +1,14 @@
-import { View } from "react-native";
-import { container } from "./styles";
-import { CardProps } from "./cardDTO";
-import { Card as CardGlueStack } from "../ui/card";
+import { View } from 'react-native';
+import { container } from './styles';
+import { Card as CardGluestack } from '@/components/ui/card';
+import { CardProps } from './cardDTO';
 
-export function Card({ children, size, variant }: CardProps) {
+export function Card({ size, variant, children }: CardProps) {
   return (
     <View style={container}>
-      <CardGlueStack size={size} variant={variant}>
+      <CardGluestack variant={variant} size={size}>
         {children}
-      </CardGlueStack>
+      </CardGluestack>
     </View>
   );
 }

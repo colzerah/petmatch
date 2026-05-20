@@ -1,27 +1,27 @@
-import { View } from "react-native";
-import { container } from "./styles";
-import { RadioProps } from "./radioDTO";
+import { View } from 'react-native';
+import { container } from './styles';
 import {
-  Radio as RadioGlueStack,
+  Radio as RadioGluestack,
   RadioGroup,
   RadioIndicator,
   RadioIcon,
   RadioLabel,
-} from "../ui/radio";
+} from '@/components/ui/radio';
+import { RadioProps } from './radioDTO';
 import { CircleIcon } from '@/components/ui/icon';
 
 export function Radio({
-  value,
-  size,
   invalid,
   disabled,
+  size,
+  value,
   label,
   onChange,
 }: RadioProps) {
   return (
     <View style={container}>
       <RadioGroup>
-        <RadioGlueStack
+        <RadioGluestack
           value={value}
           size={size}
           isInvalid={invalid}
@@ -32,7 +32,7 @@ export function Radio({
             <RadioIcon as={CircleIcon} />
           </RadioIndicator>
           <RadioLabel>{label}</RadioLabel>
-        </RadioGlueStack>
+        </RadioGluestack>
       </RadioGroup>
     </View>
   );

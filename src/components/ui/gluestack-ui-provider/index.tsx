@@ -24,13 +24,7 @@ export function GluestackUIProvider({
   }, [mode]);
 
   return (
-    <View
-      style={[
-        config[colorScheme!],
-        container,
-        props.style,
-      ]}
-    >
+    <View style={[config[colorScheme!], container, props.style]}>
       <OverlayProvider>
         <ToastProvider>{props.children}</ToastProvider>
       </OverlayProvider>

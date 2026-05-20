@@ -1,7 +1,18 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
+
+export const CARD_SIZES = ['sm', 'md', 'lg'] as const;
+export const CARD_VARIANTS = [
+  'outline',
+  'filled',
+  'ghost',
+  'elevated',
+] as const;
+
+export type CardSize = (typeof CARD_SIZES)[number];
+export type CardVariant = (typeof CARD_VARIANTS)[number];
 
 export interface CardProps {
-  children: ReactNode;
-  size?: "sm" | "md" | "lg";
-  variant?: "filled" | "outline" | "ghost" | "elevated";
+  size?: CardSize;
+  variant?: CardVariant;
+  children?: ReactNode;
 }

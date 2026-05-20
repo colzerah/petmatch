@@ -1,40 +1,38 @@
-import { View } from "react-native";
-import { container } from "./styles";
+import { View } from 'react-native';
+import { container } from './styles';
 import {
-  Checkbox as CheckboxGlueStack,
-  CheckboxIcon,
+  Checkbox as CheckboxGluestack,
   CheckboxIndicator,
   CheckboxLabel,
-} from "../ui/checkbox";
-import { CheckboxProps } from "./checkboxDTO";
-import { CheckIcon } from "@/components/ui/icon";
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
+import { CheckIcon } from '@/components/ui/icon';
+import { CheckboxProps } from './checkboxDTO';
 
 export function Checkbox({
-  isDisabled,
-  isInvalid,
+  disabled,
+  invalid,
   size,
   label,
-  isChecked,
   value,
-  isRequired,
+  checked,
   onChange,
 }: CheckboxProps) {
   return (
     <View style={container}>
-      <CheckboxGlueStack
-        isDisabled={isDisabled}
-        isInvalid={isInvalid}
-        isChecked={isChecked}
-        size={size}
+      <CheckboxGluestack
         value={value}
-        isRequired={isRequired}
+        isDisabled={disabled}
+        isInvalid={invalid}
+        isChecked={checked}
+        size={size}
         onChange={onChange}
       >
         <CheckboxIndicator>
           <CheckboxIcon as={CheckIcon} />
         </CheckboxIndicator>
         <CheckboxLabel>{label}</CheckboxLabel>
-      </CheckboxGlueStack>
+      </CheckboxGluestack>
     </View>
   );
 }

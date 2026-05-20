@@ -1,59 +1,33 @@
-import { View } from "react-native";
-import {
-  Input as InputGlueStack,
-  InputField,
-  InputSlot,
-  InputIcon,
-} from "../ui/input";
-import { container } from "./styles";
-import { InputProps } from "./inputDTO";
-import { Typography } from "../Typography";
+import { View } from 'react-native';
+import { container } from './styles';
+import { Input as InputGluestack, InputField } from '../ui/input';
+import { InputProps } from './inputDTO';
 
 export function Input({
   variant,
   size,
-  placeholder,
   isDisabled,
   isInvalid,
-  isRequired,
-  iconLeft,
-  iconRight,
+  isReadOnly,
+  placeholder,
   value,
-  label,
   onChangeText,
-  onPress,
-  type,
-  ...props
 }: InputProps) {
   return (
     <View style={container}>
-      {label && <Typography title={label} size="xl" />}
-      <InputGlueStack
-        variant={variant}
-        size={size}
+      <InputGluestack
+        variant={variant || 'outline'}
+        size={size || 'md'}
         isDisabled={isDisabled}
         isInvalid={isInvalid}
-        isRequired={isRequired}
-        className="bg-primary-0"
+        isReadOnly={isReadOnly}
       >
-        {iconLeft && (
-          <InputSlot className="pl-3">
-            <InputIcon as={iconLeft} />
-          </InputSlot>
-        )}
         <InputField
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
-          type={type}
-          {...props}
         />
-        {iconRight && (
-          <InputSlot className="pr-3" onPress={onPress}>
-            <InputIcon as={iconRight} />
-          </InputSlot>
-        )}
-      </InputGlueStack>
+      </InputGluestack>
     </View>
   );
 }

@@ -1,38 +1,29 @@
-import { View } from "react-native";
-import {
-  Button as ButtonGlueStack,
-  ButtonText,
-  ButtonIcon,
-} from "../ui/button";
-import { ButtonProps } from "./ButtonDTO";
-import { container } from "./styles";
+import { View } from 'react-native';
+import { container } from './styles';
+import { Button as ButtonGluestack, ButtonText } from '../ui/button';
+import { ButtonProps } from './buttonDTO';
 
 export function Button({
   onPress,
   title,
   variant,
   size,
-  disabled,
   action,
-  iconLeft,
-  iconRight,
+  disabled,
   ...props
 }: ButtonProps) {
   return (
     <View style={container}>
-      <ButtonGlueStack
+      <ButtonGluestack
         {...props}
+        variant={variant || 'solid'}
+        size={size || 'md'}
+        action={action || 'primary'}
         onPress={onPress}
-        variant={variant}
-        size={size}
         disabled={disabled}
-        action={action}
-        className="rounded-xl"
       >
-        {iconLeft && <ButtonIcon as={iconLeft} />}
         <ButtonText>{title}</ButtonText>
-        {iconRight && <ButtonIcon as={iconRight} />}
-      </ButtonGlueStack>
+      </ButtonGluestack>
     </View>
   );
 }
