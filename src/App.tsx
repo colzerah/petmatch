@@ -1,33 +1,37 @@
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import '../global.css';
+import { useEffect } from 'react';
+import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AppRoutes } from './routes/app.routes';
 import { NavigationContainer } from '@react-navigation/native';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import BootSplash from 'react-native-bootsplash';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
+import Routes from './routes';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
+
+  useEffect(() => {
+    BootSplash.hide({ fade: true });
+  }, []);
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <Provider store={store}>
+        <GluestackUIProvider mode="light">
+          <NavigationContainer>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            />
+            <Routes />
+          </NavigationContainer>
+        </GluestackUIProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <AppRoutes />
-      </NavigationContainer>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
