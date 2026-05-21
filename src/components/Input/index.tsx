@@ -1,13 +1,13 @@
-import { View } from "react-native";
+import { View } from 'react-native';
 import {
   Input as InputGlueStack,
   InputField,
   InputSlot,
   InputIcon,
-} from "../ui/input";
-import { container } from "./styles";
-import { InputProps } from "./inputDTO";
-import { Typography } from "../Typography";
+} from '../ui/input';
+import { container } from './styles';
+import { InputProps } from './inputDTO';
+import { Typography } from '../Typography';
 
 export function Input({
   variant,
@@ -34,7 +34,7 @@ export function Input({
         isDisabled={isDisabled}
         isInvalid={isInvalid}
         isRequired={isRequired}
-        className="bg-primary-0"
+        className="bg-primary-0 rounded-md"
       >
         {iconLeft && (
           <InputSlot className="pl-3">
@@ -46,6 +46,7 @@ export function Input({
           value={value}
           onChangeText={onChangeText}
           type={type}
+          className="placeholder:text-[#A88A72]"
           {...props}
         />
         {iconRight && (

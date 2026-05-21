@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Login } from '../../pages/App/Login';
-import { RootStackParamsList } from '../../dtos/routeDTO';
+import { RootStackParamList } from '../../dtos/routeDTO';
 import { Register } from '../../pages/App/Register';
 
-const Stack = createNativeStackNavigator<RootStackParamsList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function AppRoutes() {
   return (
