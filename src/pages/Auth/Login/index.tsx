@@ -11,11 +11,7 @@ import { useAppDispatch } from '@/hooks/useRedux';
 import { addToken, addUser, login } from '@/redux/authSlice/slice';
 import type { User } from '@/redux/authSlice/slice';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
-
-// import { NativeStackScreenProps } from '@react-navigation/native-stack';
-// import { RootStackParamList } from '@/dtos/routeDTO';
-
-// type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+import { createIcon } from '@/utils/createIcon';
 
 export function Login() {
   const navigation = useAppNavigation();
@@ -23,6 +19,18 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+
+  const AppleLogo = createIcon(AppleLogoIcon, {
+    weight: 'bold',
+    color: '#000',
+    size: 22,
+  });
+
+  const GoogleLogo = createIcon(GoogleLogoIcon, {
+    weight: 'bold',
+    color: '#000',
+    size: 22,
+  });
 
   const userFake: User = {
     profiles: [
@@ -141,14 +149,14 @@ export function Login() {
             <Button
               title="Entrar com Apple"
               size="xl"
-              iconLeft={AppleLogoIcon}
+              iconLeft={AppleLogo}
               secondary
             />
             <Button
               title="Entrar com Google"
               size="xl"
               secondary
-              iconLeft={GoogleLogoIcon}
+              iconLeft={GoogleLogo}
             />
           </VStack>
         </Box>
