@@ -1,10 +1,10 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RootStackParamList } from "../../dtos/routeDTO";
+import { RootStackParamList } from '../../dtos/routeDTO';
 
-import { Login } from "../../pages/Auth/Login";
-import { RegisterRoutes } from "./register.routes";
-import { ResetPassword } from "@/pages/Auth/ResetPassword";
+import { Login } from '../../pages/Auth/Login';
+import { RegisterRoutes } from './register.routes';
+import { ResetPassword } from '@/pages/Auth/ResetPassword';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,12 +19,12 @@ export function AuthRoutes() {
       <Stack.Screen
         name="RegisterRoutes"
         component={RegisterRoutes}
-        options={{ title: "Criar Conta", headerTitleAlign: "center" }}
+        options={{ title: 'Criar Conta', headerTitleAlign: 'center' }}
       />
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
-        options={{ title: "Esqueci minha senha", headerTitleAlign: "center" }}
+        options={{ title: 'Criar senha', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
   );
