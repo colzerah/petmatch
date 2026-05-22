@@ -1,11 +1,11 @@
-import { View } from "react-native";
+import { View } from 'react-native';
 import {
   Button as ButtonGlueStack,
   ButtonText,
   ButtonIcon,
-} from "../ui/button";
-import { ButtonProps } from "./ButtonDTO";
-import { container } from "./styles";
+} from '../ui/button';
+import { ButtonProps } from './ButtonDTO';
+import { container } from './styles';
 
 export function Button({
   onPress,
@@ -14,10 +14,14 @@ export function Button({
   size,
   disabled,
   action,
+  secondary,
   iconLeft,
   iconRight,
   ...props
 }: ButtonProps) {
+  const secondaryClass = secondary ? 'bg-white' : '';
+  const secondaryTextClass = secondary ? 'text-black' : '';
+
   return (
     <View style={container}>
       <ButtonGlueStack
@@ -27,10 +31,10 @@ export function Button({
         size={size}
         disabled={disabled}
         action={action}
-        className="rounded-xl"
+        className={`rounded-xl ${secondaryClass}`}
       >
         {iconLeft && <ButtonIcon as={iconLeft} />}
-        <ButtonText>{title}</ButtonText>
+        <ButtonText className={secondaryTextClass}>{title}</ButtonText>
         {iconRight && <ButtonIcon as={iconRight} />}
       </ButtonGlueStack>
     </View>
