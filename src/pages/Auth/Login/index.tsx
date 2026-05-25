@@ -1,24 +1,38 @@
 import { useState } from 'react';
 import { Box } from '@/components//ui/box';
 import { VStack } from '@/components/ui/vstack';
+import { Spinner } from '@/components/ui/spinner';
+import { HStack } from '@/components/ui/hstack';
+
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
-import { AppleLogoIcon, GoogleLogoIcon } from 'phosphor-react-native';
 import { Typography } from '@/components/Typography';
-import { EyeIcon, EyeOffIcon, MailIcon, LockIcon } from '@/components/ui/icon';
-import { HStack } from '@/components/ui/hstack';
+import { useToast } from '@/hooks/useToast';
+
+import {
+  AppleLogoIcon,
+  GoogleLogoIcon,
+  EnvelopeSimpleIcon,
+  LockSimpleIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from 'phosphor-react-native';
 import { useAppDispatch } from '@/hooks/useRedux';
 import { addToken, addUser, login } from '@/redux/authSlice/slice';
 import type { User } from '@/redux/authSlice/slice';
+
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { createIcon } from '@/utils/createIcon';
+import { Toast } from '@/components/Toast';
 
 export function Login() {
-  const navigation = useAppNavigation();
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const navigation = useAppNavigation();
+  const toast = useToast();
 
   const AppleLogo = createIcon(AppleLogoIcon, {
     weight: 'bold',
@@ -29,6 +43,30 @@ export function Login() {
   const GoogleLogo = createIcon(GoogleLogoIcon, {
     weight: 'bold',
     color: '#000',
+    size: 22,
+  });
+
+  const EnvelopeSimple = createIcon(EnvelopeSimpleIcon, {
+    weight: 'regular',
+    color: '#A88A72',
+    size: 22,
+  });
+
+  const LockSimple = createIcon(LockSimpleIcon, {
+    weight: 'regular',
+    color: '#A88A72',
+    size: 22,
+  });
+
+  const Eye = createIcon(EyeIcon, {
+    weight: 'regular',
+    color: '#A88A72',
+    size: 22,
+  });
+
+  const EyeSlash = createIcon(EyeSlashIcon, {
+    weight: 'regular',
+    color: '#A88A72',
     size: 22,
   });
 
@@ -83,6 +121,7 @@ export function Login() {
 
   async function handleLogin() {
     try {
+      setLoading(true);
       // Simulação de API;
       //@ts-ignore
       await new Promise(resolve => setTimeout(resolve, 3000));
@@ -91,14 +130,29 @@ export function Login() {
         dispatch(addToken('FAKE_TOKEN_123'));
         dispatch(addUser(userFake));
         dispatch(login());
+      } else {
+        throw new Error('Invalid credentials');
       }
     } catch (error) {
-      console.error('erro', error);
+      toast.show({
+        title: 'Usuário ou senha inválidos',
+        description: 'Por favor, verifique suas credenciais e tente novamente.',
+        placement: 'bottom',
+        action: 'error',
+      });
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <Box className="flex flex-1 justify-center bg-primary-100">
+    <Box className="flex flex-1 justify-center bg-primary-50">
+      {loading && (
+        <Box className="absolute inset-0 z-50 items-center justify-center bg-black/40">
+          <Spinner size="large" color="orange" />
+        </Box>
+      )}
+
       <VStack space="4xl">
         {/* Logo abaixo */}
         <VStack space="lg" className="items-center">
@@ -107,8 +161,8 @@ export function Login() {
           </Box>
 
           <VStack space="md" className="items-center">
-            <Typography title="Bem-Vindo!" bold size="4xl" />
-            <Typography title="Faça login para cuidar do seu pet" />
+            <Typography title="Bem-Vindo!" bold size="4xl" black />
+            <Typography title="Faça login para cuidar do seu pet." />
           </VStack>
         </VStack>
 
@@ -116,8 +170,8 @@ export function Login() {
           <VStack space="lg" className="px-7">
             <Input
               placeholder="seu@email.com"
-              iconLeft={MailIcon}
-              label="Email"
+              iconLeft={EnvelopeSimple}
+              label="E-mail"
               size="xl"
               value={email}
               onChangeText={setEmail}
@@ -128,8 +182,8 @@ export function Login() {
               value={password}
               onChangeText={setPassword}
               onPress={() => setShowPassword(!showPassword)}
-              iconLeft={LockIcon}
-              iconRight={showPassword ? EyeIcon : EyeOffIcon}
+              iconLeft={LockSimple}
+              iconRight={showPassword ? Eye : EyeSlash}
               type={showPassword ? 'text' : 'password'}
               size="xl"
             />
@@ -163,9 +217,9 @@ export function Login() {
 
         <Box className="items-center">
           <HStack space="sm" className="items-center">
-            <Typography title="ainda não tem uma conta?" />
+            <Typography title="ainda não tem uma conta?" size="md" />
             <Button
-              title="cadastre-se"
+              title="Cadastre-se"
               variant="link"
               onPress={() => navigation.navigate('RegisterRoutes')}
             />
