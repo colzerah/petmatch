@@ -1,8 +1,10 @@
 import { useState } from 'react';
+
 import { Box } from '@/components//ui/box';
 import { VStack } from '@/components/ui/vstack';
 import { Spinner } from '@/components/ui/spinner';
 import { HStack } from '@/components/ui/hstack';
+import { Image } from '@/components/ui/image';
 
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
@@ -23,7 +25,6 @@ import type { User } from '@/redux/authSlice/slice';
 
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { createIcon } from '@/utils/createIcon';
-import { Toast } from '@/components/Toast';
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -157,7 +158,11 @@ export function Login() {
         {/* Logo abaixo */}
         <VStack space="lg" className="items-center">
           <Box>
-            <Typography size="2xl" bold title="Logo" />
+            <Image
+              alt="Logo_PetCenter"
+              source={require('@/assets/logo.png')}
+              size="2xl"
+            />
           </Box>
 
           <VStack space="md" className="items-center">
