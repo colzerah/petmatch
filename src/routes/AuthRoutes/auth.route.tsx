@@ -24,7 +24,7 @@ export function AuthRoutes() {
       <Stack.Screen
         name="ResetPassword"
         component={ResetPassword}
-        options={{ title: 'Criar senha', headerTitleAlign: 'center' }}
+        options={{ title: 'Criar nova senha', headerTitleAlign: 'center' }}
       />
     </Stack.Navigator>
   );

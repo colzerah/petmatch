@@ -7,6 +7,7 @@ import { HStack } from '@/components/ui/hstack';
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { Typography } from '@/components/Typography';
+import { useToast } from '@/hooks/useToast';
 
 import {
   AppleLogoIcon,
@@ -22,6 +23,7 @@ import type { User } from '@/redux/authSlice/slice';
 
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { createIcon } from '@/utils/createIcon';
+import { Toast } from '@/components/Toast';
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -30,6 +32,7 @@ export function Login() {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
   const navigation = useAppNavigation();
+  const toast = useToast();
 
   const AppleLogo = createIcon(AppleLogoIcon, {
     weight: 'bold',
@@ -127,16 +130,23 @@ export function Login() {
         dispatch(addToken('FAKE_TOKEN_123'));
         dispatch(addUser(userFake));
         dispatch(login());
+      } else {
+        throw new Error('Invalid credentials');
       }
     } catch (error) {
-      console.error('erro', error);
+      toast.show({
+        title: 'Usuário ou senha inválidos',
+        description: 'Por favor, verifique suas credenciais e tente novamente.',
+        placement: 'bottom',
+        action: 'error',
+      });
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <Box className="flex flex-1 justify-center bg-primary-100">
+    <Box className="flex flex-1 justify-center bg-primary-50">
       {loading && (
         <Box className="absolute inset-0 z-50 items-center justify-center bg-black/40">
           <Spinner size="large" color="orange" />
@@ -151,8 +161,8 @@ export function Login() {
           </Box>
 
           <VStack space="md" className="items-center">
-            <Typography title="Bem-Vindo!" bold size="4xl" />
-            <Typography title="Faça login para cuidar do seu pet" />
+            <Typography title="Bem-Vindo!" bold size="4xl" black />
+            <Typography title="Faça login para cuidar do seu pet." />
           </VStack>
         </VStack>
 

@@ -27,7 +27,7 @@ export function Input({
 }: InputProps) {
   return (
     <View style={container}>
-      {label && <Typography title={label} size="lg" bold />}
+      {label && <Typography title={label} size="lg" bold black />}
       <InputGlueStack
         variant={variant}
         size={size}

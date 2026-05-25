@@ -4,7 +4,7 @@ import { vars } from 'nativewind';
 export const config = {
   light: vars({
     '--color-primary-0': '255 255 255',
-    '--color-primary-50': '255 254 254',
+    '--color-primary-50': '255 246 238',
     '--color-primary-100': '255 239 228',
     '--color-primary-200': '255 210 177',
     '--color-primary-300': '255 181 126',

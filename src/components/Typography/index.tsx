@@ -1,7 +1,7 @@
-import { View } from "react-native";
-import { container } from "./styles";
-import { Text as TextGlueStack } from "../ui/text";
-import { TypographyProps } from "./typographyDTO";
+import { View } from 'react-native';
+import { container } from './styles';
+import { Text as TextGlueStack } from '../ui/text';
+import { TypographyProps } from './typographyDTO';
 
 export function Typography({
   title,
@@ -9,6 +9,8 @@ export function Typography({
   italic,
   underline,
   size,
+  sub,
+  black,
 }: TypographyProps) {
   return (
     <View style={container}>
@@ -17,6 +19,8 @@ export function Typography({
         italic={italic}
         underline={underline}
         size={size}
+        sub={sub}
+        style={{ color: black ? '#000' : '#A88A72' }}
       >
         {title}
       </TextGlueStack>
