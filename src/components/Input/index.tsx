@@ -13,6 +13,7 @@ export function Input({
   variant,
   size,
   placeholder,
+  placeholderTextColor = '#A88A72',
   isDisabled,
   isInvalid,
   isRequired,
@@ -25,9 +26,11 @@ export function Input({
   type,
   ...props
 }: InputProps) {
+  const placeholderColorClass = `placeholder:text-[${placeholderTextColor}]`;
+
   return (
     <View style={container}>
-      {label && <Typography title={label} size="lg" bold black />}
+      {label && <Typography title={label} size="lg" bold />}
       <InputGlueStack
         variant={variant}
         size={size}
@@ -46,7 +49,7 @@ export function Input({
           value={value}
           onChangeText={onChangeText}
           type={type}
-          className="placeholder:text-[#A88A72]"
+          className={placeholderColorClass}
           {...props}
         />
         {iconRight && (

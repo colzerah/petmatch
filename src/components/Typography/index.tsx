@@ -10,7 +10,7 @@ export function Typography({
   underline,
   size,
   sub,
-  black,
+  textColor = '#000',
 }: TypographyProps) {
   return (
     <View style={container}>
@@ -20,7 +20,7 @@ export function Typography({
         underline={underline}
         size={size}
         sub={sub}
-        style={{ color: black ? '#000' : '#A88A72' }}
+        style={{ color: textColor }}
       >
         {title}
       </TextGlueStack>

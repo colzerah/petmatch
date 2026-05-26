@@ -155,7 +155,6 @@ export function Login() {
       )}
 
       <VStack space="4xl">
-        {/* Logo abaixo */}
         <VStack space="lg" className="items-center">
           <Box>
             <Image
@@ -166,8 +165,11 @@ export function Login() {
           </Box>
 
           <VStack space="md" className="items-center">
-            <Typography title="Bem-Vindo!" bold size="4xl" black />
-            <Typography title="Faça login para cuidar do seu pet." />
+            <Typography title="Bem-Vindo!" bold size="4xl" />
+            <Typography
+              title="Faça login para cuidar do seu pet."
+              textColor="#A88A72"
+            />
           </VStack>
         </VStack>
 

@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export interface InputProps {
-  variant?: "outline" | "rounded" | "underlined";
-  size?: "sm" | "md" | "lg" | "xl";
-  type?: "text" | "password";
+  variant?: 'outline' | 'rounded' | 'underlined';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  type?: 'text' | 'password';
   placeholder: string;
+  placeholderTextColor?: string;
   isDisabled?: boolean;
   isInvalid?: boolean;
   isRequired?: boolean;

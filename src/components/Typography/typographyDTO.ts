@@ -5,6 +5,7 @@ export interface TypographyProps {
   underline?: boolean;
   sub?: boolean;
   black?: boolean;
+  textColor?: string;
   size?:
     | 'xs'
     | 'sm'
