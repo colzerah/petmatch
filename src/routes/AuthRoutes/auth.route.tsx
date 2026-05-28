@@ -19,7 +19,13 @@ export function AuthRoutes() {
       <Stack.Screen
         name="RegisterRoutes"
         component={RegisterRoutes}
-        options={{ title: 'Criar Conta', headerTitleAlign: 'center' }}
+        options={{
+          title: 'Criar Conta',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#FFF6EE',
+          },
+        }}
       />
       <Stack.Screen
         name="ResetPassword"
