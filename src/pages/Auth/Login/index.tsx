@@ -182,6 +182,7 @@ export function Login() {
               size="xl"
               value={email}
               onChangeText={setEmail}
+              placeholderTextColor="#A88A72"
             />
             <Input
               placeholder="********"
@@ -193,6 +194,7 @@ export function Login() {
               iconRight={showPassword ? Eye : EyeSlash}
               type={showPassword ? 'text' : 'password'}
               size="xl"
+              placeholderTextColor="#A88A72"
             />
             <Box className="items-end">
               <Button
@@ -224,7 +226,11 @@ export function Login() {
 
         <Box className="items-center">
           <HStack space="sm" className="items-center">
-            <Typography title="ainda não tem uma conta?" size="md" />
+            <Typography
+              title="ainda não tem uma conta?"
+              size="md"
+              textColor="#A88A72"
+            />
             <Button
               title="Cadastre-se"
               variant="link"
