@@ -6,7 +6,6 @@ import { Pressable } from '../ui/pressable';
 import { RadioGroup, Radio } from '../ui/radio';
 import { VStack } from '../ui/vstack';
 import { HStack } from '../ui/hstack';
-import { Text } from '../ui/text';
 import { Typography } from '../Typography';
 
 export function RadioCard({ options, value, onChange }: RadioCardProps) {
