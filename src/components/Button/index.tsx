@@ -6,6 +6,8 @@ import {
 } from '../ui/button';
 import { ButtonProps } from './ButtonDTO';
 import { container } from './styles';
+import { createIcon } from '../../utils/createIcon';
+import { AppleLogoIcon, GoogleLogoIcon } from 'phosphor-react-native';
 
 export function Button({
   onPress,
@@ -19,8 +21,32 @@ export function Button({
   iconRight,
   ...props
 }: ButtonProps) {
-  const secondaryClass = secondary ? 'bg-white' : '';
-  const secondaryTextClass = secondary ? 'text-black' : '';
+  const AppleLogo = createIcon(AppleLogoIcon, {
+    weight: 'bold',
+    color: '#000',
+    size: 22,
+  });
+
+  const GoogleLogo = createIcon(GoogleLogoIcon, {
+    weight: 'bold',
+    color: '#000',
+    size: 22,
+  });
+
+  // const RenderIcon = () => {
+
+  //   <IconComponent
+  //   weight={weight}
+  //   color={color}
+  //   size={size}
+  //   {...defaultProps}
+  //   />
+  // }
+
+  const IconComponent = {
+    AppleLogoIcon: AppleLogo,
+    GoogleLogoIcon: GoogleLogo,
+  };
 
   return (
     <View style={container}>
@@ -31,11 +57,11 @@ export function Button({
         size={size}
         disabled={disabled}
         action={action}
-        className={`rounded-xl ${secondaryClass}`}
+        className={`rounded-xl`}
       >
-        {iconLeft && <ButtonIcon as={iconLeft} />}
-        <ButtonText className={secondaryTextClass}>{title}</ButtonText>
-        {iconRight && <ButtonIcon as={iconRight} />}
+        {iconLeft && <ButtonIcon as={IconComponent[iconLeft]} />}
+        <ButtonText>{title}</ButtonText>
+        {iconRight && <ButtonIcon as={IconComponent[iconRight]} />}
       </ButtonGlueStack>
     </View>
   );

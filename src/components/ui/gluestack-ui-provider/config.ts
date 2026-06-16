@@ -16,6 +16,21 @@ export const config = {
     '--color-primary-900': '75 32 0',
     '--color-primary-950': '0 0 0',
 
+    /* Button Primary Colors */
+    '--bg-button-primary': '255 122 24',
+    '--text-button-primary': '255 255 255',
+    '--active-button-primary': '177 75 0',
+
+    /* Button Secondary Colors */
+    '--bg-button-secondary': '255 255 255',
+    '--text-button-secondary': '0 0 0',
+    '--active-button-secondary': '230 230 230',
+
+    /* Button Danger Colors */
+    '--bg-button-danger': '224 75 75',
+    '--text-button-danger': '255 255 255',
+    '--active-button-danger': '130 15 13',
+
     /* Secondary  */
     '--color-secondary-0': '253 253 253',
     '--color-secondary-50': '251 251 251',

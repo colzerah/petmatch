@@ -1,4 +1,4 @@
-import React from 'react';
+import { IconButtonName } from '@/dtos/iconDTO';
 
 export interface ButtonProps {
   onPress?: () => void;
@@ -8,6 +8,6 @@ export interface ButtonProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   disabled?: boolean;
   secondary?: boolean;
-  iconLeft?: React.ComponentType<any>; // resolveu por enquanto
-  iconRight?: React.ComponentType<any>; // resolveu por enquanto
+  iconLeft?: IconButtonName; // resolveu por enquanto
+  iconRight?: IconButtonName; // resolveu por enquanto
 }

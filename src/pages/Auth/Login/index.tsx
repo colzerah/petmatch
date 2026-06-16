@@ -25,6 +25,7 @@ import type { User } from '@/redux/authSlice/slice';
 
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { createIcon } from '@/utils/createIcon';
+import { ArrowUpIcon } from '@/components/ui/icon';
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -120,7 +121,7 @@ export function Login() {
     updatedAt: new Date('2026-01-01T00:00:00Z'),
   };
 
-  async function handleLogin() {
+  const handleLogin = async () => {
     try {
       setLoading(true);
       // Simulação de API;
@@ -144,7 +145,11 @@ export function Login() {
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const handleNavigate = (route: 'RegisterRoutes' | 'ResetPassword') => {
+    navigation.navigate(route);
+  };
 
   return (
     <Box className="flex flex-1 justify-center bg-primary-50">
@@ -168,76 +173,70 @@ export function Login() {
             <Typography title="Bem-Vindo!" bold size="4xl" />
             <Typography
               title="Faça login para cuidar do seu pet."
-              textColor="#A88A72"
+              type="secondary"
             />
           </VStack>
         </VStack>
 
-        <Box>
-          <VStack space="lg" className="px-7">
-            <Input
-              placeholder="seu@email.com"
-              iconLeft={EnvelopeSimple}
-              label="E-mail"
-              size="xl"
-              value={email}
-              onChangeText={setEmail}
-              placeholderTextColor="#A88A72"
-            />
-            <Input
-              placeholder="********"
-              label="Senha"
-              value={password}
-              onChangeText={setPassword}
-              onPress={() => setShowPassword(!showPassword)}
-              iconLeft={LockSimple}
-              iconRight={showPassword ? Eye : EyeSlash}
-              type={showPassword ? 'text' : 'password'}
-              size="xl"
-              placeholderTextColor="#A88A72"
-            />
-            <Box className="items-end">
-              <Button
-                variant="link"
-                title="esqueci minha senha"
-                onPress={() => navigation.navigate('ResetPassword')}
-              />
-            </Box>
-          </VStack>
-        </Box>
-
-        <Box>
-          <VStack space="xl" className="px-7">
-            <Button title="Entrar" size="xl" onPress={handleLogin} />
+        <VStack space="lg" className="px-7">
+          <Input
+            placeholder="seu@email.com"
+            iconLeft={EnvelopeSimple}
+            label="E-mail"
+            size="xl"
+            value={email}
+            onChangeText={setEmail}
+            placeholderTextColor="#A88A72"
+          />
+          <Input
+            placeholder="********"
+            label="Senha"
+            value={password}
+            onChangeText={setPassword}
+            onPress={() => setShowPassword(!showPassword)}
+            iconLeft={LockSimple}
+            iconRight={showPassword ? Eye : EyeSlash}
+            type={showPassword ? 'text' : 'password'}
+            size="xl"
+            placeholderTextColor="#A88A72"
+          />
+          <Box className="items-end">
             <Button
-              title="Entrar com Apple"
-              size="xl"
-              iconLeft={AppleLogo}
-              secondary
-            />
-            <Button
-              title="Entrar com Google"
-              size="xl"
-              secondary
-              iconLeft={GoogleLogo}
-            />
-          </VStack>
-        </Box>
-
-        <Box className="items-center">
-          <HStack space="sm" className="items-center">
-            <Typography
-              title="ainda não tem uma conta?"
-              size="md"
-              textColor="#A88A72"
-            />
-            <Button
-              title="Cadastre-se"
               variant="link"
-              onPress={() => navigation.navigate('RegisterRoutes')}
+              title="esqueci minha senha"
+              onPress={() => handleNavigate('ResetPassword')}
             />
-          </HStack>
-        </Box>
+          </Box>
+        </VStack>
+
+        <VStack space="xl" className="px-7">
+          <Button title="Entrar" size="xl" onPress={handleLogin} />
+          <Button
+            title="Entrar com Apple"
+            size="xl"
+            iconLeft={'AppleLogoIcon'}
+            action="secondary"
+          />
+          <Button
+            title="Entrar com Google"
+            size="xl"
+            action="secondary"
+            iconLeft={'GoogleLogoIcon'}
+          />
+        </VStack>
+
+        <HStack space="sm" className="justify-center items-center">
+          <Typography
+            title="ainda não tem uma conta?"
+            size="md"
+            type="secondary"
+          />
+          <Button
+            title="Cadastre-se"
+            variant="link"
+            onPress={() => handleNavigate('RegisterRoutes')}
+          />
+        </HStack>
       </VStack>
     </Box>
   );

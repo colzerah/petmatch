@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Login } from '../../pages/App/Login';
+import { Login } from '../../pages/Auth/Login';
 import { RootStackParamList } from '../../dtos/routeDTO';
 import { Register } from '../../pages/App/Register';
 

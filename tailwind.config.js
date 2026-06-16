@@ -20,6 +20,23 @@ module.exports = {
           900: 'rgb(var(--color-primary-900)/<alpha-value>)',
           950: 'rgb(var(--color-primary-950)/<alpha-value>)',
         },
+        button: {
+          primary: {
+            bg: 'rgb(var(--bg-button-primary)/<alpha-value>)',
+            text: 'rgb(var(--text-button-primary)/<alpha-value>)',
+            active: 'rgb(var(--active-button-primary)/<alpha-value>)',
+          },
+          secondary: {
+            bg: 'rgb(var(--bg-button-secondary)/<alpha-value>)',
+            text: 'rgb(var(--text-button-secondary)/<alpha-value>)',
+            active: 'rgb(var(--active-button-secondary)/<alpha-value>)',
+          },
+          danger: {
+            bg: 'rgb(var(--bg-button-danger)/<alpha-value>)',
+            text: 'rgb(var(--text-button-danger)/<alpha-value>)',
+            active: 'rgb(var(--active-button-danger)/<alpha-value>)',
+          },
+        },
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
@@ -119,6 +136,7 @@ module.exports = {
           white: '#FFFFFF',
           gray: '#D4D4D4',
           black: '#181718',
+          brown: '#A88A72',
         },
         outline: {
           0: 'rgb(var(--color-outline-0)/<alpha-value>)',

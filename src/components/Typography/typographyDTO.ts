@@ -1,11 +1,19 @@
+export type ColorType = 'primary' | 'secondary' | 'black' | 'white';
+
+export const colorMap: Record<ColorType, string> = {
+  primary: '#ff7a18',
+  secondary: '#A88A72',
+  black: '#000',
+  white: '#fff',
+};
+
 export interface TypographyProps {
   title: string;
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
   sub?: boolean;
-  black?: boolean;
-  textColor?: string;
+  type?: ColorType;
   size?:
     | 'xs'
     | 'sm'

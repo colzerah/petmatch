@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { container } from './styles';
 import { Text as TextGlueStack } from '../ui/text';
-import { TypographyProps } from './typographyDTO';
+import { TypographyProps, colorMap } from './typographyDTO';
 
 export function Typography({
   title,
@@ -10,8 +10,10 @@ export function Typography({
   underline,
   size,
   sub,
-  textColor = '#000',
+  type = 'black',
 }: TypographyProps) {
+  const textColor = colorMap[type];
+
   return (
     <View style={container}>
       <TextGlueStack

@@ -24,7 +24,6 @@ import {
   CopyIcon,
   DownloadIcon,
   EditIcon,
-  EyeIcon,
   EyeOffIcon,
   FavouriteIcon,
   GlobeIcon,
@@ -55,6 +54,15 @@ import {
   TrashIcon,
   UnlockIcon,
 } from '@/components/ui/icon';
+
+import {
+  EyeIcon,
+  EyeSlashIcon,
+  AppleLogoIcon,
+  GoogleLogoIcon,
+  EnvelopeSimpleIcon,
+  LockSimpleIcon,
+} from 'phosphor-react-native';
 
 export const ICON_MAP = {
   AddIcon,
@@ -112,6 +120,16 @@ export const ICON_MAP = {
   ThreeDotsIcon,
   TrashIcon,
   UnlockIcon,
+  EyeSlashIcon,
+  EnvelopeSimpleIcon,
+  LockSimpleIcon,
 } as const;
+
+export const ICON_BUTTON_MAP = {
+  AppleLogoIcon,
+  GoogleLogoIcon,
+} as const;
+
+export type IconButtonName = keyof typeof ICON_BUTTON_MAP;
 
 export type IconName = keyof typeof ICON_MAP;
